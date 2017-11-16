@@ -7,5 +7,3 @@ notifications:
 
 before_script:
   - composer install --no-interaction
-
-script: phpunit --ignore-configuration --coverage-text
