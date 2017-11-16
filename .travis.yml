@@ -4,20 +4,9 @@ php:
 
 notifications:
   email: false
-before_script:
-      - curl -s http://getcomposer.org/installer | php
-      - php composer.phar install
-
-script: phpunit
-
-install:
-  - php vendor/vendors.php
 
 before_script:
-      - curl -s http://getcomposer.org/installer | php
-      - php composer.phar install
+      - composer install --no-interaction
 
-script: phpunit --configuration phpunit_$DB.xml --coverage-text
-
-env:
-  - DB=pgsql
+script: 
+  - vendor/bin/phpunit
