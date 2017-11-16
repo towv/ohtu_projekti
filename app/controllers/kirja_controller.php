@@ -36,7 +36,7 @@ class KirjaController extends BaseController{
 		}
 	}
 
-		public static function update($id){
+	public static function update($id){
 		$params = $_POST;
 		$attributes = array(
 			'id' => $id,
@@ -65,6 +65,6 @@ class KirjaController extends BaseController{
 	}
 
 	public static function create() {
-		View::make('kirja/new.html'));
+		View::make('kirja/new.html');
 	}
 }
