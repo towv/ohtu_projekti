@@ -11,7 +11,6 @@ before_script:
 script: phpunit
 
 install:
-  - ./bin/ci/install_dependencies.sh
   - php vendor/vendors.php
 
 before_script:
