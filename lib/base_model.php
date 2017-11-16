@@ -21,7 +21,7 @@
 
       // foreach($this->validators as $validator){
         // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
-      }
+      //}
 
       return $errors;
     }
