@@ -2,11 +2,11 @@ language: php
 php:
   - '7.0'
 
-  notifications:
-    email: false
+notifications:
+  email: false
 
-    before_script:
+before_script:
       - curl -s http://getcomposer.org/installer | php
       - php composer.phar install
 
-      script: phpunit
+script: phpunit
