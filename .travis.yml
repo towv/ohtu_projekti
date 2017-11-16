@@ -3,7 +3,6 @@
 
 # Tell Travis CI we are using PHP
 language: php
-<<<<<<< HEAD
 
 # Versions of PHP you want your project run with.
 php:
