@@ -65,5 +65,5 @@ class KirjaController extends BaseController{
 	}
 
 	public static function create() {
-		View::make('kirja/new.html'));
-}
+		View::make('kirja/new.html');
+	}
