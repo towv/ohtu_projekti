@@ -3,12 +3,17 @@ php:
   - '7.0'
   - nightly
 
-before_script:
-    - curl -s http://getcomposer.org/installer | php
-    - php composer.phar install
+  notifications:
+    email: false
 
 script: phpunit
 
 install:
   - ./bin/ci/install_dependencies.sh
   - php vendor/vendors.php
+
+    before_script:
+      - curl -s http://getcomposer.org/installer | php
+      - php composer.phar install
+
+      script: phpunit
