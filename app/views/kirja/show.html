@@ -12,7 +12,14 @@
 	</ul>
 </div>
 <br>
-{{forms.destroy_button("#{base_path}/kirja/#{kirja.id}/destroy")}}
+<a href="{{base_path}}/kirja/{{kirja.id}}/destroy" class="btn btn-large btn-danger" data-toggle="confirmation"
+        data-btn-ok-label="Kyllä" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+        data-btn-ok-class="btn-success"
+        data-btn-cancel-label="Peruuta" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+        data-btn-cancel-class="btn-danger"
+        data-title="Kirjan poisto" data-content="Haluatko varmasti poistaa kirjan?">
+  Poista
+</a>
 <br>
 <br>
 <p>
