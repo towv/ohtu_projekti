@@ -17,4 +17,7 @@ before_script:
       - curl -s http://getcomposer.org/installer | php
       - php composer.phar install
 
-script: phpunit
+script: phpunit --configuration phpunit_$DB.xml --coverage-text
+
+env:
+  - DB=pgsql
