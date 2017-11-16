@@ -11,7 +11,7 @@ Tervetuloa Ketterien Gepardien Ohjelmisto Tuotanto projektin github sivuille!
 
 ## Ryhmän jäsenet
 
-* 
-*
-*
-*
+* [Joakim Jaulimo](https://github.com/jaulimo)
+* [Sami Lindqvist](https://github.com/zamizmi)
+* [Topi Laanti](https://github.com/laatopi)
+* [Lotta Merisaari](https://github.com/)
