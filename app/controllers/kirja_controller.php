@@ -52,7 +52,7 @@ class KirjaController extends BaseController{
 			$kirja->update();
 			Redirect::to('/kirja/' . $kirja->id, array('message' => 'Kirja on muokattu onnistuneesti!'));
 		}else{
-			View::make('kirja/'.$kirja->id.'edit.html', array('errors' => $errors, 'attributes' => $attributes));
+			View::make('kirja/edit.html', array('errors' => $errors, 'attributes' => $attributes));
 		}
 	}
 

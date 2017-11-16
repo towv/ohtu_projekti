@@ -5,7 +5,9 @@ class Kirja extends BaseModel{
 
 	public function __construct($attributes){
 		parent::__construct($attributes);
+                $this->validators = array('validate_name', 'validate_isbn', 'validate_writer');
 	}
+        
 
 	public static function all(){
 		$query = DB::connection()->prepare('SELECT * FROM Kirja');
