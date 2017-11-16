@@ -4,7 +4,7 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use Projects\Ankur\Calculator;
+
 
 /**
  * Class CalculatorTest.
@@ -18,10 +18,12 @@ class KirjarTest extends TestCase
      */
     private $calc;
 
-    public function __construct()
+    public function all()
     {
-        $this->calc = new Calculator();
-        parent::__construct();
+        $variable = true;
+
+        $this->assertEquals($variable, true);
+
     }
 
     

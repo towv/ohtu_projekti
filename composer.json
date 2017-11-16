@@ -1,9 +1,10 @@
-  "name": "ohtu_projekti",
+{
+  "name": "phpUnit-Testing-Travis-CI-and-Coveralls",
   "license": "MIT",
   "authors": [
     {
       "name": "ankurk91",
-      "homepage": "h"
+      "homepage": "https://ankurk91.github.io/"
     }
   ],
   "require": {
@@ -13,7 +14,7 @@
   },
   "autoload": {
     "classmap": [
-      "app/Classes"
+      "app/models"
     ]
   },
   "scripts": {
