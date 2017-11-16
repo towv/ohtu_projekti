@@ -14,14 +14,14 @@ class KirjaTest extends PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        $this->pdo->query("DROP TABLE Kirja");
+        #$this->pdo->query("DROP TABLE Kirja");
     }
 
     public function testKirja()
     {
-        $kirja = new Kirja($this->pdo);
+        #$kirja = new Kirja($this->pdo);
 
-        return true;
+        #return true;
     }
 }
 
