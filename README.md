@@ -9,6 +9,10 @@ Tervetuloa Ketterien Gepardien Ohjelmisto Tuotanto projektin github sivuille!
 
 * [Linkki sovellukseen](http://laatopi.users.cs.helsinki.fi/tsoha/kirja)
 
+### Sprintin Backlogit
+
+* [1. Sprintti](https://docs.google.com/spreadsheets/d/10OBfmNmPVPwvg_Tim1979bz0jjIAt4BuUVJWD45U0sQ/edit#gid=0)
+
 ## Ryhmän jäsenet
 
 * [Joakim Jaulimo](https://github.com/jaulimo)
