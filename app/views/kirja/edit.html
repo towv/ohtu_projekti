@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Muokkaa kirjaa {{attributes.nimi}}</h1>
+<div class="show">
+  <form method="post" action="{{base_path}}/kirja/{{attributes.id}}/edit">
+    <div class="form-group">
+      <label>Kirjan otsikko</label>
+      <input type="text" name="nimi" class="form-control" value="{{attributes.otsikko}}">
+    </div>
+
+    <div class="form-group">
+      <label>Kirjoittaja</label>
+      <input type="text" name="kurssitunnus" class="form-control" value="{{attributes.kirjoittaja}}">
+    </div>
+
+    <div class="form-group">
+      <label>isbn</label>
+      <input type="textarea" name="kuvaus" class="form-control" value="{{attributes.isbn}}">
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Tallenna Muutokset</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

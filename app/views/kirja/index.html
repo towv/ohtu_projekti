@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Kaikki kirjat</h1>
+<div class="show">
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Otsikko</th>
+      <th>Kirjoittaja</th>
+      <th>ISBN</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for kirja in kirjat %}
+    <tr>
+      <td><a href="{{base_path}}/kirja/{{kirja.id}}">{{kirja.otsikko}}</a></td>
+      <td>{{kirja.kirjoittaja}}</td>
+      <td>{{kirja.isbn}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+<p>
+  <a href="{{base_path}}/kirja/new" class="btn btn-primary">Lisää kirja</a>
+</p>
+{% endblock %}
