@@ -12,14 +12,8 @@
 	</ul>
 </div>
 <br>
-<button class="btn btn-large btn-danger" data-toggle="confirmation"
-        data-btn-ok-label="Kyllä" data-btn-ok-icon="glyphicon glyphicon-share-alt"
-        data-btn-ok-class="btn-success"
-        data-btn-cancel-label="Peruuta" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
-        data-btn-cancel-class="btn-danger"
-        data-title="Kirjan poisto" data-content="Haluatko varmasti poistaa kirjan?">
-  Poista
-<a href="{{base_path}}/kirja/{{kirja.id}}/destroy"></a></button>
+<a class="btn btn-large btn-danger" data-toggle="confirmation" data-title="Haluatko varmasti poistaa kirjan?"
+   href="{{base_path}}/kirja/{{kirja.id}}/destroy" target="_blank">Poista</a>
 {{forms.destroy_button("#{base_path}/kirja/#{kirja.id}/destroy")}}
 <br>
 <br>
