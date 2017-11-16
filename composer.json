@@ -1,18 +1,4 @@
 {
-  "name": "phpUnit-Testing-Travis-CI-and-Coveralls",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "ankurk91",
-      "homepage": "https://ankurk91.github.io/"
-    }
-  ],
-  "require": {
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^6.4"
-  },
-
   "autoload": {
     "classmap": [
       "config/database.php",
