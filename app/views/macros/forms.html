@@ -1,5 +1,5 @@
 {% macro destroy_button(action, text) %}
-<form method="post" action="{{base_path}}/game/{{game.id}}/destroy" class="destroy-form" data-confirm="Oletko varma, että haluat poistaa pelin?">
-  <button type="submit" class="btn btn-danger">Poista</button>
+<form method="post" action="{{action}}" class="destroy-form" data-confirm="Oletko varma, että haluat poistaa?">
+	<button type="submit" class="btn btn-danger">{{text|default('Poista')}}</button>
 </form>
 {% endmacro %}
