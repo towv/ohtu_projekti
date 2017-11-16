@@ -7,7 +7,3 @@ notifications:
 
 before_script:
       - composer install --no-interaction
-      - vendor install --no-interaction
-
-script: 
-  - vendor/bin/phpunit
