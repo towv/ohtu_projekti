@@ -7,7 +7,7 @@ Tervetuloa Ketterien Gepardien Ohjelmisto Tuotanto projektin github sivuille!
 
 [![Build Status](https://travis-ci.org/Zamizmi/ohtu_projekti.svg?branch=master)](https://travis-ci.org/Zamizmi/ohtu_projekti)
 
-* [Linkki sovellukseen](www.sovellus.com)
+* [Linkki sovellukseen](http://laatopi.users.cs.helsinki.fi/tsoha/kirja)
 
 ## Ryhmän jäsenet
 
