@@ -13,6 +13,9 @@ Tervetuloa Ketterien Gepardien Ohjelmisto Tuotanto projektin github sivuille!
 
 * [1. Sprintti](https://docs.google.com/spreadsheets/d/10OBfmNmPVPwvg_Tim1979bz0jjIAt4BuUVJWD45U0sQ/edit#gid=0)
 
+### Gepardien Definition of Done
+Gepardien Scrum tiimin definition of done kun story on tuotannossa. Sisältää vain käyttäjätestauksen. 
+
 ## Ryhmän jäsenet
 
 * [Joakim Jaulimo](https://github.com/jaulimo)
