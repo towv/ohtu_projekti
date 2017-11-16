@@ -65,22 +65,6 @@ class KirjaController extends BaseController{
 	}
 
 	public static function create() {
-		$params = $_POST;
-		$attributes = array(
-			'id' => $id,
-			'otsikko' => $params['otsikko'],
-			'kirjoittaja' => $params['kirjoittaja'],
-			'isbn' => $params['isbn']
-		);
-
-		$kirja = new Kirja($attributes);
-		$errors = $kirja->errors();
-
-		if(count($errors) == 0){
-			$kirja->create();
-			Redirect::to('/kirja/' . $kirja->id, array('message' => 'Kirja on luotu onnistuneesti!'));
-		}else{
-			View::make('kirja/'.$kirja->id.'new.html', array('errors' => $errors, 'attributes' => $attributes));
-		}
+		View::make('kirja/new.html');
 	}
  }
