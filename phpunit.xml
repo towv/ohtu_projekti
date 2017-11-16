@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+        backupGlobals="true"
+        colors="true"
+        stopOnFailure="false"
+        bootstrap="tests/bootstrap.php">
+
+    <filter>
+        <whitelist>
+            <directory>./ap5p</directory>
+        </whitelist>
+    </filter>
+
+    <testsuite name="Ohtuprojekti Test Suite">
+        <directory suffix=".php">./tests</directory>
+    </testsuite>
+
+</phpunit>
