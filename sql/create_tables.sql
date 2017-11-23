@@ -1,7 +1,24 @@
 -- Lisää CREATE TABLE lauseet tähän tiedostoon
-CREATE TABLE Kirja(
-	id SERIAL PRIMARY KEY,
-	otsikko varchar(50) NOT NULL,
-	kirjoittaja varchar(50) NOT NULL,
-	isbn varchar(50) NOT NULL
+CREATE TABLE Lukuvinkki(
+    id SERIAL PRIMARY KEY,
+    otsikko varchar(50) NOT NULL,
+    tekija varchar(50) NOT NULL,
+    isbn varchar(50),
+    url varchar(50),
+    tyyppi varchar(20) NOT NULL,
+    kuvaus varchar(300),
+    julkaistu varchar(20) NOT NULL
+);
+
+CREATE TABLE Kayttaja(
+    id SERIAL PRIMARY KEY,
+    tunnus varchar(50) NOT NULL,
+    salasana varchar (50) NOT NULL
+);
+
+
+CREATE TABLE Status(
+    kayttaja_id INTEGER REFERENCES Kayttaja(id),
+    lukuvinkki_id INTEGER REFERENCES Lukuvinkki(id),
+    status boolean NOT NULL
 );
