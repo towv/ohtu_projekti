@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if kayttaja %}
+<h1>Käyttäjän tiedot: {{kayttaja.tunnus}}</h1>
+<div class="show">
+</div>
+{% endif %}
+
+{% endblock %}

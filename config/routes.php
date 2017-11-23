@@ -4,7 +4,12 @@ $routes->get('/', function() {
 	LukuvinkkiController::index();
 });
 
-  //Kirjat
+$routes->get('/hiekkalaatikko', function() {
+	HelloWorldController::sandbox();
+});
+
+
+  //Lukuvinkit
 
 $routes->get('/lukuvinkki', function(){
         LukuvinkkiController::index();
@@ -32,4 +37,25 @@ $routes->post('/lukuvinkki/:id/destroy',function($id) {
 
 $routes ->post('/lukuvinkki', function() {
 	LukuvinkkiController::store();
+});
+
+// Kirjautuminen
+
+$routes->get('/login', function(){
+	KayttajaController::login();
+});
+$routes->get('/signup', function(){
+	KayttajaController::create();
+});
+$routes ->post('/signup', function() {
+	KayttajaController::store();
+});
+$routes->get('/opiskelija/:id', function() {
+	KayttajaController::show();
+});
+$routes->post('/login', function(){
+	KayttajaController::handle_login();
+});
+$routes->post('/logout', function(){
+	KayttajaController::logout();
 });

@@ -22,7 +22,7 @@ class Lukuvinkki extends BaseModel{
 				'otsikko' => $row['otsikko'],
 				'tekija' => $row['tekija'],
 				'isbn' => $row['isbn'],
-                                'url' => $row['url'],
+                'url' => $row['url'],
 				'tyyppi' => $row['tyyppi'],
 				'kuvaus' => $row['kuvaus'],
 				'julkaistu' => $row['julkaistu']
