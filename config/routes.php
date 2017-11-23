@@ -50,7 +50,7 @@ $routes->get('/signup', function(){
 $routes ->post('/signup', function() {
 	KayttajaController::store();
 });
-$routes->get('/opiskelija/:id', function() {
+$routes->get('/kayttaja/:id', function() {
 	KayttajaController::show();
 });
 $routes->post('/login', function(){
