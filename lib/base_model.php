@@ -59,14 +59,43 @@ class BaseModel{
   public function validate_writer() {
     $errors = array();
 
-    if($this->tekija == '' || $this->tekija == null){
-      $errors[] = 'Kirjoittaja ei voi olla tyhjä.';
-    }
-    if(strlen($this->tekija) < 3){
+    if(strlen($this->tekija) < 3 ){
       $errors[] = 'Kirjoittajan pitää olla vähintään 3 merkkiä.';
     }
     if(strlen($this->tekija) > 50){
       $errors[] = 'Kirjoittaja saa olla korkeintaan 50 merkkiä.';
+    }
+  }
+
+  public function validate_url() {
+    $errors = array();
+
+    if ($this->tyyppi == "podcast" | $this->tyyppi == "blogspost" | $this->tyyppi == "video") {
+      if (preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $this->url)) {
+        $errors[] = 'URL ei ole validi.';
+      }
+    }
+    return $errors;
+  }
+
+  public function validate_tyyppi() {
+    $errors = array();
+
+    if($this->tyyppi == '' || $this->tyyppi == null){
+      $errors[] = 'Tyyppi ei voi olla tyhjä.';
+    }
+    if($this->tyyppi != 'kirja' | $this->tyyppi != 'podcast' | $this->tyyppi != 'blogpost' | $this->tyyppi != 'video'){
+      $errors[] = 'Valitse tyyppi ehdotetuista.';
+    }
+
+    return $errors;
+  }
+
+  public function validate_kuvaus() {
+    $errors = array();
+
+    if(strlen($this->kuvaus) > 300){
+      $errors[] = 'Kuvaus saa olla enintään 300 merkkiä.';
     }
     return $errors;
   }
