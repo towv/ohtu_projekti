@@ -1,14 +1,9 @@
 <?php
 include("app/models/lukuvinkki.php");
 
-class lukuVinkkiTest extends PHPUnit_Framework_TestCase
+class lukuvinkkiTest extends PHPUnit_Framework_TestCase
 {
-
-  public function setUp()
-  {
-  }
-
-  public function luontiOnnistuuOikein()
+  public function testLuontiOnnistuuOikein()
   {
     $lukuvinkki = new Lukuvinkki(array(
       'id' => '111',
