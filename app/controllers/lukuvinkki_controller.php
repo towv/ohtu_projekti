@@ -40,6 +40,14 @@ class LukuvinkkiController extends BaseController{
 		}
 	}
 
+	public static function onkoLuettu($lukuvinkki_id) {
+		$query = DB::connection()->prepare('SELECT COUNT ( DISTINCT id) FROM Status INNER JOIN Kurssiaihe ON Status.kayttaja_id = :kayttaja_id AND Status.lukuvinkki_id = Status.id');
+		$query -> execute(array('lukuvinkki_id' => $lukuvinkki_id));
+		$status = $query->fetch();
+
+		return $status[0];
+	}
+
 	public static function update($id){
 		$params = $_POST;
                 
