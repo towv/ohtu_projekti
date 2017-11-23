@@ -1,5 +1,7 @@
 <?php
 
+include("lib/base_model.php");
+
 class Lukuvinkki extends BaseModel{
 	public $id, $otsikko, $tekija, $isbn, $url, $tyyppi, $kuvaus, $julkaistu;
 
@@ -7,7 +9,7 @@ class Lukuvinkki extends BaseModel{
 		parent::__construct($attributes);
                 $this->validators = array('validate_name', 'validate_isbn', 'validate_writer');
 	}
-        
+
 
 	public static function all(){
 		$query = DB::connection()->prepare('SELECT * FROM Lukuvinkki');
