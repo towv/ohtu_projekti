@@ -1,6 +1,6 @@
 # Ohtu Projekti Ketterät Gepardit
 
-Tervetuloa Ketterien Gepardien Ohjelmisto Tuotanto projektin github sivuille!
+Tervetuloa Ketterien Gepardien Ohjelmistotuotantoprojektin github-sivuille!
 
 [![Build Status](https://travis-ci.org/Zamizmi/ohtu_projekti.svg?branch=master)](https://travis-ci.org/Zamizmi/ohtu_projekti)
 
