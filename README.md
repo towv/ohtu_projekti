@@ -2,19 +2,32 @@
 
 Tervetuloa Ketterien Gepardien Ohjelmisto Tuotanto projektin github sivuille!
 
-
-* [Linkki backlogiin](https://docs.google.com/spreadsheets/d/10OBfmNmPVPwvg_Tim1979bz0jjIAt4BuUVJWD45U0sQ/edit?usp=sharing)
-
 [![Build Status](https://travis-ci.org/Zamizmi/ohtu_projekti.svg?branch=master)](https://travis-ci.org/Zamizmi/ohtu_projekti)
 
 * [Linkki sovellukseen](http://laatopi.users.cs.helsinki.fi/tsoha/kirja)
+
+* [Linkki backlogiin](https://docs.google.com/spreadsheets/d/10OBfmNmPVPwvg_Tim1979bz0jjIAt4BuUVJWD45U0sQ/edit?usp=sharing)
+
 
 ### Sprintin Backlogit
 
 * [1. Sprintti](https://docs.google.com/spreadsheets/d/10OBfmNmPVPwvg_Tim1979bz0jjIAt4BuUVJWD45U0sQ/edit#gid=0)
 
 ### Gepardien Definition of Done
-Gepardien Scrum tiimin definition of done kun story on tuotannossa. Sisältää vain käyttäjätestauksen. 
+Story on toteutettu DoDn mukaisesti, kun...
+
+Toiminto on viety tuotantoympäristöön.
+
+Story on toteutettu suunnitelman mukaisesti, eli backlogeilta löytyvien kriteerien ja dokumentoinnin mukaisesti.
+
+Story on toteutettu kokonaisuudessaan (kaikki taskit).
+
+Toiminta on varmistettu testaamalla (vähintäänkin) käyttöliittymää manuaalisesti.
+
+Toteutettu koodi on integroitu muuhun ohjelmaan.
+
+Ohjelman koodi on tyyliltään yhtenäistä ja selkeää.
+
 
 ## Ryhmän jäsenet
 
