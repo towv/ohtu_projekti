@@ -1,16 +1,14 @@
 <?php
 class StatusController extends BaseController{
     
-    //Tallentaa käyttäjän arvosanan kirjalle
     public static function store($id) {
         self::check_logged_in();
         
         $params = $_POST;
         $lukuvinkki = $id;
         $kayttaja_id = self::get_user_logged_in()->id;
-        $arvostelu = $params['rating'];
         
-        $rating = new Status(array(
+        $status = new Status(array(
         'kayttaja_id' => $kayttaja_id,
         'lukuvinkki' => $lukuvinkki,
         'Status' => $status
@@ -21,7 +19,7 @@ class StatusController extends BaseController{
         } else {
             $status->save();
         }
-        Redirect::to('/books', array('message' => 'Your status has been counted'));
+        Redirect::to('/lukuvinkki', array('message' => 'Your status has been updated'));
     }
     
     

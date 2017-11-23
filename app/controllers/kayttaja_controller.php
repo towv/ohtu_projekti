@@ -1,5 +1,5 @@
 <?php
-class KayttajaCOntroller extends BaseController{
+class KayttajaController extends BaseController{
   public static function login(){
     View::make('kayttaja/login.html');
   }

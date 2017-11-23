@@ -44,14 +44,29 @@
     public function validate_isbn() {
         $errors = array();
         
-        if($this->isbn == '' || $this->isbn == null){
-            $errors[] = 'ISBN ei voi olla tyhjä.';
+        
+        if ($this->tyyppi == "kirja") {
+            if($this->isbn == '' || $this->isbn == null){
+                $errors[] = 'ISBN ei voi olla tyhjä.';
+            }
+            if(strlen($this->isbn) != 13){
+                $errors[] = 'ISBN pitäisi olla 13 merkkiä.';
+            }
+            if(!ctype_digit($this->isbn) ){
+                $errors[] = 'ISBN pitäisi olla pelkkiä numeroita';
+            }
         }
-        if(strlen($this->isbn) != 13){
-            $errors[] = 'ISBN pitäisi olla 13 merkkiä.';
-        }
-        if(!ctype_digit($this->isbn) ){
-            $errors[] = 'ISBN pitäisi olla pelkkiä numeroita';
+        
+        return $errors;
+    }
+    
+    public function validate_url() {
+        $errors = array();
+        
+        if ($this->tyyppi == "podcast" | $this->tyyppi == "blogspost" | $this->tyyppi == "video") {
+            if (preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $this->url)) {
+                $errors[] = 'URL ei ole validi.';
+}
         }
         return $errors;
     }
@@ -67,6 +82,28 @@
         }
         if(strlen($this->tekija) > 50){
             $errors[] = 'Kirjoittaja saa olla korkeintaan 50 merkkiä.';
+        }
+        return $errors;
+    }
+    
+    public function validate_tyyppi() {
+        $errors = array();
+        
+        if($this->tyyppi == '' || $this->tyyppi == null){
+            $errors[] = 'Tyyppi ei voi olla tyhjä.';
+        }
+        if($this->tyyppi != 'kirja' | $this->tyyppi != 'podcast' | $this->tyyppi != 'blogpost' | $this->tyyppi != 'video'){
+            $errors[] = 'Valitse tyyppi ehdotetuista.';
+        }
+
+        return $errors;
+    }
+    
+    public function validate_kuvaus() {
+        $errors = array();
+        
+        if(strlen($this->kuvaus) > 300){
+            $errors[] = 'Kuvaus saa olla enintään 300 merkkiä.';
         }
         return $errors;
     }
