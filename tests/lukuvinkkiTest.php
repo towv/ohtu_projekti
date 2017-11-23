@@ -1,7 +1,7 @@
 <?php
 include("app/models/lukuvinkki.php");
 
-class KirjaTest extends PHPUnit_Framework_TestCase
+class lukuVinkkiTest extends PHPUnit_Framework_TestCase
 {
 
   public function setUp()
@@ -24,4 +24,5 @@ class KirjaTest extends PHPUnit_Framework_TestCase
 
     $this->assertEquals("samin kuntopolku", $result);
   }
+
 }
