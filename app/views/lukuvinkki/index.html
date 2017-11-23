@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Kaikki lukuvinkit</h1>
+<div class="show">
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Otsikko</th>
+      <th>Tekijä</th>
+      <th>Julkaistu</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for lukuvinkki in lukuvinkit %}
+    <tr>
+      <td><a href="{{base_path}}/lukuvinkki/{{lukuvinkki.id}}">{{lukuvinkki.otsikko}}</a></td>
+      <td>{{lukuvinkki.tekija}}</td>
+      <td>{{lukuvinkki.julkaistu}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+<p>
+  <a href="{{base_path}}/lukuvinkki/new" class="btn btn-primary">Lisää kirja</a>
+</p>
+{% endblock %}

@@ -1,0 +1,71 @@
+<?php
+
+class Lukuvinkki extends BaseModel{
+	public $id, $otsikko, $tekija, $isbn, $url, $tyyppi, $kuvaus, $julkaistu;
+
+	public function __construct($attributes){
+		parent::__construct($attributes);
+                $this->validators = array('validate_name', 'validate_isbn', 'validate_writer');
+	}
+        
+
+	public static function all(){
+		$query = DB::connection()->prepare('SELECT * FROM Lukuvinkki');
+		$query->execute();
+		$rows = $query->fetchAll();
+		$lukuvinkit = array();
+		foreach($rows as $row){
+			$lukuvinkit[] = new Lukuvinkki(array(
+				'id' => $row['id'],
+				'otsikko' => $row['otsikko'],
+				'tekija' => $row['tekija'],
+				'isbn' => $row['isbn'],
+                                'url' => $row['url'],
+				'tyyppi' => $row['tyyppi'],
+				'kuvaus' => $row['kuvaus'],
+				'julkaistu' => $row['julkaistu']
+			));
+		}
+		return $lukuvinkit;
+	}
+
+	public static function find($id){
+		$query = DB::connection()->prepare('SELECT * FROM Lukuvinkki WHERE id = :id LIMIT 1');
+		$query->execute(array('id' => $id));
+		$row = $query->fetch();
+		$lukuvinkki = array();
+
+
+		if($row){
+			$lukuvinkki = new Lukuvinkki(array(
+				'id' => $row['id'],
+				'otsikko' => $row['otsikko'],
+				'tekija' => $row['tekija'],
+				'isbn' => $row['isbn'],
+                                'url' => $row['url'],
+				'tyyppi' => $row['tyyppi'],
+				'kuvaus' => $row['kuvaus'],
+				'julkaistu' => $row['julkaistu']
+			));
+			return $lukuvinkki;
+		}
+		return null;
+	}
+
+	public function save() {
+		$query = DB::connection() -> prepare('INSERT INTO Lukuvinkki(otsikko, kirjoittaja, isbn, url, tyyppi, kuvaus, julkaistu) VALUES (:otsikko, :kirjoittaja, :isbn, :url, :tyyppi, :kuvaus, :julkaistu) RETURNING id');
+		$query -> execute(array('otsikko' => $this->otsikko, 'tekija' => $this->tekija, 'isbn' => $this->isbn, 'url' => $this->url, 'tyyppi' => $this->tyyppi, 'kuvaus' => $this->kuvaus, 'julkaistu' => $this->julkaistu));
+		$row = $query->fetch();
+		$this->id = $row['id'];
+	}
+
+	public function update(){
+		$query = DB::connection()->prepare('UPDATE Lukuvinkki SET otsikko = :otsikko, kirjoittaja = :kirjoittaja, isbn = :isbn WHERE id = :id');
+		$query -> execute(array('id' => $this->id, 'otsikko' => $this->otsikko, 'tekija' => $this->tekija, 'isbn' => $this->isbn, 'url' => $this->url, 'tyyppi' => $this->tyyppi, 'kuvaus' => $this->kuvaus, 'julkaistu' => $this->julkaistu));
+	}
+
+	public function destroy() {
+		$query = DB::connection()->prepare('DELETE FROM Lukuvinkki WHERE id =:id');
+		$query -> execute(array('id' => $this->id));
+	}
+}

@@ -59,13 +59,13 @@
     public function validate_writer() {
         $errors = array();
         
-        if($this->kirjoittaja == '' || $this->kirjoittaja == null){
+        if($this->tekija == '' || $this->tekija == null){
             $errors[] = 'Kirjoittaja ei voi olla tyhjä.';
         }
-        if(strlen($this->kirjoittaja) < 3){
+        if(strlen($this->tekija) < 3){
             $errors[] = 'Kirjoittajan pitää olla vähintään 3 merkkiä.';
         }
-        if(strlen($this->kirjoittaja) > 50){
+        if(strlen($this->tekija) > 50){
             $errors[] = 'Kirjoittaja saa olla korkeintaan 50 merkkiä.';
         }
         return $errors;

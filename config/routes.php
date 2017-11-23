@@ -1,35 +1,35 @@
 <?php
 
 $routes->get('/', function() {
-	KirjaController::index();
+	LukuvinkkiController::index();
 });
 
   //Kirjat
 
-$routes->get('/kirja', function(){
-	KirjaController::index();
+$routes->get('/lukuvinkki', function(){
+        LukuvinkkiController::index();
 });
 
-$routes ->get('/kirja/new', function() {
-	KirjaController::create();
+$routes ->get('/lukuvinkki/new', function() {
+	LukuvinkkiController::create();
 });
 
-$routes->get('/kirja/:id', function($id){
-	KirjaController::show($id);
+$routes->get('/lukuvinkki/:id', function($id){
+	LukuvinkkiController::show($id);
 });
 
-$routes->get('/kirja/:id/edit', function($id) {
-	KirjaController::edit($id);
+$routes->get('/lukuvinkki/:id/edit', function($id) {
+	LukuvinkkiController::edit($id);
 });
 
-$routes->post('/kirja/:id/edit', function($id) {
-	KirjaController::update($id);
+$routes->post('/lukuvinkki/:id/edit', function($id) {
+	LukuvinkkiController::update($id);
 });
 
-$routes->post('/kirja/:id/destroy',function($id) {
-	KirjaController::destroy($id);
+$routes->post('/lukuvinkki/:id/destroy',function($id) {
+	LukuvinkkiController::destroy($id);
 });
 
-$routes ->post('/kirja', function() {
-	KirjaController::store();
+$routes ->post('/lukuvinkki', function() {
+	LukuvinkkiController::store();
 });

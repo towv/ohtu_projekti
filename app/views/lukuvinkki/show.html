@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+<h1>{{lukuvinkki.nimi}}</h1>
+<div class="show">
+	<ul>
+		<li><strong>Otsikko:</strong> {{lukuvinkki.otsikko}}</li>
+		<br>
+		<li><strong>Tekijä:</strong> {{lukuvinkki.tekija}}</li>
+		<br>
+	</ul>
+</div>
+<br>
+{{forms.destroy_button("#{base_path}/lukuvinkki/#{lukuvinkki.id}/destroy")}}
+<br>
+<br>
+<p>
+	<a href="{{base_path}}/lukuvinkki/{{lukuvinkki.id}}/edit" class="btn btn-primary">Muokkaa</a>
+</p>
+{% endblock %}

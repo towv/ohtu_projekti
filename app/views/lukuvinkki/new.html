@@ -1,21 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Lisää uusi kirja</h1>
+<h1>Lisää uusi lukuvinkki</h1>
 <div class="show">
-<form method="post" action="{{base_path}}/kirja">
+<form method="post" action="{{base_path}}/lukuvinkki">
   <div class="form-group">
-    <label>Kirjan otsikko</label>
+    <label>Lukuvinkin otsikko</label>
     <input type="text" name="otsikko" class="form-control" value="{{attributes.otsikko}}">
   </div>
 
   <div class="form-group">
-    <label>Kirjoittaja</label>
+    <label>Tekijä</label>
     <input type="text" name="kirjoittaja" class="form-control" value="{{attributes.kirjoittaja}}">
-  </div>
-
-  <div class="form-group">
-    <label>ISBN</label>
-    <input type="text" name="isbn" class="form-control" value="{{attributes.isbn}}">
   </div>
 
   <div class="form-group">

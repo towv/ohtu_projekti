@@ -2,20 +2,30 @@
 {% block content %}
 <h1>Muokkaa kirjaa {{attributes.nimi}}</h1>
 <div class="show">
-  <form method="post" action="{{base_path}}/kirja/{{attributes.id}}/edit">
+  <form method="post" action="{{base_path}}/lukuvinkki/{{attributes.id}}/edit">
     <div class="form-group">
-      <label>Kirjan otsikko</label>
+      <label>Lukuvinkin otsikko</label>
       <input type="text" name="otsikko" class="form-control" value="{{attributes.otsikko}}">
     </div>
 
     <div class="form-group">
-      <label>Kirjoittaja</label>
-      <input type="text" name="kirjoittaja" class="form-control" value="{{attributes.kirjoittaja}}">
+      <label>Tekijä</label>
+      <input type="text" name="tekija" class="form-control" value="{{attributes.kirjoittaja}}">
     </div>
 
     <div class="form-group">
       <label>isbn</label>
       <input type="textarea" name="isbn" class="form-control" value="{{attributes.isbn}}">
+    </div>
+      
+    <div class="form-group">
+      <label>url</label>
+      <input type="text" name="url" class="form-control" value="{{attributes.url}}">
+    </div>
+      
+      <div class="form-group">
+      <label>tyyppi</label>
+      <input type="text" name="tyyppi" class="form-control" value="{{attributes.tyyppi}}">
     </div>
 
     <div class="form-group">
