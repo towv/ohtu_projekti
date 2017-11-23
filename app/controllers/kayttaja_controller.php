@@ -21,20 +21,23 @@ class KayttajaController extends BaseController{
       View::make('kayttaja/signup.html', array('errors' => $errors));
     }
   }
+
   public static function logout(){
     $_SESSION['kayttaja'] = null;
     Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
   }
+
   public static function handle_login(){
     $params = $_POST;
     $kayttaja = Kayttaja::authenticate($params['tunnus'], $params['salasana']);
     if(!$kayttaja){
       View::make('kayttaja/login.html', array('errors' => 'Väärä käyttäjätunnus tai salasana!', 'tunnus' => $params['tunnus']));
     }else{
-      $_SESSION['kayttaja'] = $opiskelija->id;
+      $_SESSION['kayttaja'] = $kayttaja->id;
       Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $kayttaja->tunnus . '!'));
     }
   }
+
   public static function show() {
     self::check_logged_in();
     $kayttaja = parent::get_user_logged_in();

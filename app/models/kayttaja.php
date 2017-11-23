@@ -11,7 +11,7 @@ class Kayttaja extends BaseModel{
 		$row = $query->fetch();
 		$kayttaja = array();
 		if($row){
-			$kayttaja = new Kurssi(array(
+			$kayttaja = new Kayttaja(array(
 				'id' => $row['id'],
 				'tunnus' => $row['tunnus'],
 				'salasana' => $row['salasana']
@@ -20,7 +20,7 @@ class Kayttaja extends BaseModel{
 		}
 		return null;
 	}
-#EI TESTATTU ETTÄ TOIMII
+
 	public function save() {
 		$query = DB::connection() -> prepare('INSERT INTO Kayttaja (tunnus, salasana) VALUES (:tunnus, :salasana) RETURNING id');
 		$query -> execute(array('tunnus' => $this->tunnus, 'salasana' => $this->salasana));
@@ -43,7 +43,7 @@ class Kayttaja extends BaseModel{
 		}
 	}
 	public function validate_tunnus() {
-		return parent::validate_string_length('kayttaja', $this->kayttaja, 2, 50);
+		return parent::validate_string_length('tunnus', $this->tunnus, 2, 50);
 	}
 	public function validate_salasana() {
 		return parent::validate_string_length('salasana', $this->salasana, 6, 50);
