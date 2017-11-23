@@ -53,14 +53,14 @@ class Lukuvinkki extends BaseModel{
 	}
 
 	public function save() {
-		$query = DB::connection() -> prepare('INSERT INTO Lukuvinkki(otsikko, kirjoittaja, isbn, url, tyyppi, kuvaus, julkaistu) VALUES (:otsikko, :kirjoittaja, :isbn, :url, :tyyppi, :kuvaus, :julkaistu) RETURNING id');
+		$query = DB::connection() -> prepare('INSERT INTO Lukuvinkki(otsikko, tekija, isbn, url, tyyppi, kuvaus, julkaistu) VALUES (:otsikko, :tekija, :isbn, :url, :tyyppi, :kuvaus, :julkaistu) RETURNING id');
 		$query -> execute(array('otsikko' => $this->otsikko, 'tekija' => $this->tekija, 'isbn' => $this->isbn, 'url' => $this->url, 'tyyppi' => $this->tyyppi, 'kuvaus' => $this->kuvaus, 'julkaistu' => $this->julkaistu));
 		$row = $query->fetch();
 		$this->id = $row['id'];
 	}
 
 	public function update(){
-		$query = DB::connection()->prepare('UPDATE Lukuvinkki SET otsikko = :otsikko, kirjoittaja = :kirjoittaja, isbn = :isbn WHERE id = :id');
+		$query = DB::connection()->prepare('UPDATE Lukuvinkki SET otsikko = :otsikko, tekija = :tekija, isbn = :isbn, url = :url, tekija = :tyyppi, kuvaus = :kuvaus, julkaistu = :julkaistu WHERE id = :id');
 		$query -> execute(array('id' => $this->id, 'otsikko' => $this->otsikko, 'tekija' => $this->tekija, 'isbn' => $this->isbn, 'url' => $this->url, 'tyyppi' => $this->tyyppi, 'kuvaus' => $this->kuvaus, 'julkaistu' => $this->julkaistu));
 	}
 

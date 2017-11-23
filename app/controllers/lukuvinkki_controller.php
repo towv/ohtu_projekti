@@ -21,20 +21,20 @@ class LukuvinkkiController extends BaseController{
 		$params = $_POST;
 
 		$attributes = array(
-                    'otsikko' => $row['otsikko'],
-                    'tekija' => $row['tekija'],
-                    'isbn' => $row['isbn'],
-                    'url' => $row['url'],
-                    'tyyppi' => $row['tyyppi'],
-                    'kuvaus' => $row['kuvaus'],
-                    'julkaistu' => $row['julkaistu']
+                    'otsikko' => $params['otsikko'],
+                    'tekija' => $params['tekija'],
+                    'isbn' => $params['isbn'],
+                    'url' => $params['url'],
+                    'tyyppi' => $params['tyyppi'],
+                    'kuvaus' => $params['kuvaus'],
+                    'julkaistu' => $params['julkaistu']
 		);
 		$lukuvinkki = new Lukuvinkki($attributes);
 		$errors = $lukuvinkki->errors();
 
 		if(count($errors) == 0){
 			$lukuvinkki->save();
-			Redirect::to('/lukuvinkki/' . $kirja->id, array('message' => 'Lukuvinkki on lisätty!'));
+			Redirect::to('/lukuvinkki/' . $lukuvinkki->id, array('message' => 'Lukuvinkki on lisätty!'));
 		}else{
 			View::make('lukuvinkki/new.html', array('errors' => $errors, 'attributes' => $attributes));
 		}
@@ -44,13 +44,13 @@ class LukuvinkkiController extends BaseController{
 		$params = $_POST;
                 
 		$attributes = array(
-                    'otsikko' => $row['otsikko'],
-                    'tekija' => $row['tekija'],
-                    'isbn' => $row['isbn'],
-                    'url' => $row['url'],
-                    'tyyppi' => $row['tyyppi'],
-                    'kuvaus' => $row['kuvaus'],
-                    'julkaistu' => $row['julkaistu']
+                    'otsikko' => $params['otsikko'],
+                    'tekija' => $params['tekija'],
+                    'isbn' => $params['isbn'],
+                    'url' => $params['url'],
+                    'tyyppi' => $params['tyyppi'],
+                    'kuvaus' => $params['kuvaus'],
+                    'julkaistu' => $params['julkaistu']
 		);
 
 		$lukuvinkki = new Lukuvinkki($attributes);
