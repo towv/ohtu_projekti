@@ -1,4 +1,6 @@
 <?php
+include("config/database.php");
+
 
   class DB{
 
