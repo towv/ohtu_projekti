@@ -23,12 +23,12 @@ $routes->get('/lukuvinkki/:id', function($id){
 	LukuvinkkiController::show($id);
 });
 
-$routes->get('/lukuvinkki/:id/edit', function($id) {
-	LukuvinkkiController::edit($id);
-});
-
 $routes->post('/lukuvinkki/:id/edit', function($id) {
 	LukuvinkkiController::update($id);
+});
+
+$routes->get('/lukuvinkki/:id/edit', function($id) {
+	LukuvinkkiController::edit($id);
 });
 
 $routes->post('/lukuvinkki/:id/destroy',function($id) {

@@ -14,7 +14,7 @@
   <tbody>
     {% for lukuvinkki in lukuvinkit %}
     <tr>
-      <td><a href="{{base_path}}/lukuvinkki/{{lukuvinkki.id}}">{{lukuvinkki.otsikko}}</a></td>
+      <td><a href="{{base_path}}/lukuvinkki/{{lukuvinkki.id}}">{{lukuvinkki.otsikko}}</a>  <span class="badge badge-pill badge-info">{{lukuvinkki.tyyppi}}</span></td>
       <td>{{lukuvinkki.tekija}}</td>
       <td>{{lukuvinkki.julkaistu}}</td>
     </tr>

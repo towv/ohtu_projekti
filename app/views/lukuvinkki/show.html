@@ -3,19 +3,32 @@
 {% import "macros/forms.html" as forms %}
 <h1>{{lukuvinkki.nimi}}</h1>
 <div class="show">
-	<ul>
-		<li><strong>Otsikko:</strong> {{lukuvinkki.otsikko}}</li>
-		<br>
-		<li><strong>Tekijä:</strong> {{lukuvinkki.tekija}}</li>
-		<br>
-		<li><strong>Luettu:</strong> <span class="badge">{{onkoLuettu}}</span></li>
-	</ul>
+    <ul>
+        <li><strong>Otsikko:</strong> {{lukuvinkki.otsikko}}</li>
+        <br>
+        <li><strong>Tekijä:</strong> {{lukuvinkki.tekija}}</li>
+        <br>
+        <li><strong>ISBN:</strong> {{lukuvinkki.isbn}}</li>
+        <br>
+        <li><strong>URL:</strong> {{lukuvinkki.url}}</li>
+        <br>
+        <li><strong>Julkaistu:</strong> {{lukuvinkki.julkaistu}}</li>
+        <br>
+        <li><strong>Luettu:</strong> <span class="badge">{{onkoLuettu}}</span></li>
+        <br>
+        <li><strong>Tagit:</strong> 
+            {% for tag in tags %}
+            <span class="badge">{{tag.tag_nimi}}</span>
+            {% endfor %}
+        </li>
+        <br>
+        <li><strong>Kuvaus:</strong> {{lukuvinkki.kuvaus}}</li>
+        <br>
+    </ul>
 </div>
 <br>
-{{forms.destroy_button("#{base_path}/lukuvinkki/#{lukuvinkki.id}/destroy")}}
-<br>
-<br>
 <p>
-	<a href="{{base_path}}/lukuvinkki/{{lukuvinkki.id}}/edit" class="btn btn-primary">Muokkaa</a>
+<a href="{{base_path}}/lukuvinkki/{{lukuvinkki.id}}/edit" class="btn btn-primary">Muokkaa</a>
+{{forms.destroy_button("#{base_path}/lukuvinkki/#{lukuvinkki.id}/destroy")}} 
 </p>
 {% endblock %}

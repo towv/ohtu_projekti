@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Muokkaa kirjaa {{attributes.nimi}}</h1>
+<h1>Muokkaa kirjaa {{lukuvinkki.nimi}}</h1>
 <div class="show">
   <form method="post" action="{{base_path}}/lukuvinkki/{{attributes.id}}/edit">
     <div class="form-group">
@@ -10,7 +10,7 @@
 
     <div class="form-group">
       <label>Tekijä</label>
-      <input type="text" name="tekija" class="form-control" value="{{attributes.kirjoittaja}}">
+      <input type="text" name="tekija" class="form-control" value="{{attributes.tekija}}">
     </div>
 
     <div class="form-group">
@@ -23,9 +23,33 @@
       <input type="text" name="url" class="form-control" value="{{attributes.url}}">
     </div>
       
-      <div class="form-group">
-      <label>tyyppi</label>
-      <input type="text" name="tyyppi" class="form-control" value="{{attributes.tyyppi}}">
+    <div class="form-group">
+      <label>Tyyppi</label>
+      <select name="tyyppi" class="form-control" value="{{attributes.tyyppi}}">
+        <option>kirja</option>
+        <option>podcast</option>
+        <option>blog post</option>
+        <option>video</option>
+      </select>
+    </div>
+      
+    <div class="form-group">
+      <label>julkaistu</label>
+      <input type="text" name="julkaistu" class="form-control" value="{{attributes.julkaistu}}">
+    </div>
+      
+    <div class="form-group">
+      <label>kuvaus</label>
+      <input type="text" name="kuvaus" class="form-control" value="{{attributes.kuvaus}}">
+    </div>
+      
+    <div class="form-group">
+      <label>Tags</label>
+      <select name="tags[]" class="form-control" multiple="">
+            {% for tag in tags %}
+                <option value="{{tag.id}}">{{tag.nimi}}</option>
+            {% endfor %}
+      </select>
     </div>
 
     <div class="form-group">

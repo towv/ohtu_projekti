@@ -1,6 +1,6 @@
 <?php
 
-include("lib/base_model.php");
+//include("lib/base_model.php");
 
 class Lukuvinkki extends BaseModel{
 	public $id, $otsikko, $tekija, $isbn, $url, $tyyppi, $kuvaus, $julkaistu;
@@ -61,12 +61,14 @@ class Lukuvinkki extends BaseModel{
 		$this->id = $row['id'];
 	}
 
-	public function update(){
-		$query = DB::connection()->prepare('UPDATE Lukuvinkki SET otsikko = :otsikko, tekija = :tekija, isbn = :isbn, url = :url, tekija = :tyyppi, kuvaus = :kuvaus, julkaistu = :julkaistu WHERE id = :id');
-		$query -> execute(array('id' => $this->id, 'otsikko' => $this->otsikko, 'tekija' => $this->tekija, 'isbn' => $this->isbn, 'url' => $this->url, 'tyyppi' => $this->tyyppi, 'kuvaus' => $this->kuvaus, 'julkaistu' => $this->julkaistu));
+	public function update($id){
+		$query = DB::connection()->prepare('UPDATE Lukuvinkki SET otsikko = :otsikko, tekija = :tekija, isbn = :isbn, url = :url, tyyppi = :tyyppi, kuvaus = :kuvaus, julkaistu = :julkaistu WHERE id = :id');
+		$query -> execute(array('otsikko' => $this->otsikko, 'tekija' => $this->tekija, 'isbn' => $this->isbn, 'url' => $this->url, 'tyyppi' => $this->tyyppi, 'kuvaus' => $this->kuvaus, 'julkaistu' => $this->julkaistu, 'id' => $id));
 	}
 
 	public function destroy() {
+                $query = DB::connection()->prepare('DELETE FROM LukuvinkkiTag WHERE lukuvinkki_id = :id');
+                $query->execute(array('id' => $this->id));
 		$query = DB::connection()->prepare('DELETE FROM Lukuvinkki WHERE id =:id');
 		$query -> execute(array('id' => $this->id));
 	}

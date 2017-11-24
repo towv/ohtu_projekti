@@ -43,8 +43,7 @@
     
     public function validate_isbn() {
         $errors = array();
-        
-        
+
         if ($this->tyyppi == "kirja") {
             if($this->isbn == '' || $this->isbn == null){
                 $errors[] = 'ISBN ei voi olla tyhjä.';
@@ -63,11 +62,7 @@
     public function validate_url() {
         $errors = array();
         
-        if ($this->tyyppi == "podcast" | $this->tyyppi == "blogspost" | $this->tyyppi == "video") {
-            if (preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $this->url)) {
-                $errors[] = 'URL ei ole validi.';
-}
-        }
+       
         return $errors;
     }
     
@@ -86,14 +81,29 @@
         return $errors;
     }
     
+    public function validate_julkaistu() {
+        $errors = array();
+        
+        if ($this->tyyppi == "kirja") {
+            if($this->julkaistu == '' || $this->julkaistu == null){
+                $errors[] = 'Julkaisu ei voi olla tyhjä.';
+            }
+            if(strlen($this->julkaistu) != 4){
+                $errors[] = '"Julkaistu" pitää olla vuosiluku.';
+            }
+            if(!ctype_digit($this->julkaistu) ){
+                $errors[] = '"Julkaistu" pitäisi olla pelkkiä numeroita';
+            }
+        }
+        
+        return $errors;
+    }
+    
     public function validate_tyyppi() {
         $errors = array();
         
         if($this->tyyppi == '' || $this->tyyppi == null){
             $errors[] = 'Tyyppi ei voi olla tyhjä.';
-        }
-        if($this->tyyppi != 'kirja' | $this->tyyppi != 'podcast' | $this->tyyppi != 'blogpost' | $this->tyyppi != 'video'){
-            $errors[] = 'Valitse tyyppi ehdotetuista.';
         }
 
         return $errors;

@@ -1,25 +1,32 @@
 <?php
 
 class LukuvinkkiController extends BaseController{
+    
 	public static function index(){
 		$lukuvinkit = Lukuvinkki::all();
 		View::make('lukuvinkki/index.html', array('lukuvinkit' => $lukuvinkit));
 	}
 
 	public static function show($id){
-		$lukuvinkki = Lukuvinkki::find($id);
-		View::make('lukuvinkki/show.html', array('lukuvinkki' => $lukuvinkki));
+            $lukuvinkki = Lukuvinkki::find($id);
+            $tags = LukuvinkkiTag::findTags($id);
+
+            if ($tags == NULL) {
+                $tags = "";
+            }
+
+            View::make('lukuvinkki/show.html', array('lukuvinkki' => $lukuvinkki, 'tags' => $tags));
 	}
 
 	public static function edit($id){
 		$lukuvinkki = Lukuvinkki::find($id);
-
-		View::make('lukuvinkki/edit.html', array('attributes' => $lukuvinkki));
+                $tags = Tag::all();
+		View::make('lukuvinkki/edit.html', array('attributes' => $lukuvinkki, 'tags' => $tags));
 	}
 
 	public static function store() {
 		$params = $_POST;
-
+                $tags = Tag::all();
 		$attributes = array(
                     'otsikko' => $params['otsikko'],
                     'tekija' => $params['tekija'],
@@ -33,11 +40,23 @@ class LukuvinkkiController extends BaseController{
 		$errors = $lukuvinkki->errors();
 
 		if(count($errors) == 0){
-			$lukuvinkki->save();
-			Redirect::to('/lukuvinkki/' . $lukuvinkki->id, array('message' => 'Lukuvinkki on lisätty!'));
+                    $lukuvinkki->save();
+
+                    try {
+                        $tags = $params['tags'];
+
+                        foreach ($tags as $tag) {
+                            $tag = new LukuvinkkiTag(array('tag_id' => $tag, 'lukuvinkki_id' => $lukuvinkki->id));
+                            $tag->save();
+                        }
+                    } catch (Exception $ex) {
+
+                    }
+                    Redirect::to('/lukuvinkki/' . $lukuvinkki->id, array('message' => 'Lukuvinkki on lisätty!'));
 		}else{
-			View::make('lukuvinkki/new.html', array('errors' => $errors, 'attributes' => $attributes));
+                    View::make('lukuvinkki/new.html', array('errors' => $errors, 'attributes' => $attributes, 'tags' => $tags));
 		}
+        
 	}
 
 	public static function onkoLuettu($lukuvinkki_id) {
@@ -65,10 +84,23 @@ class LukuvinkkiController extends BaseController{
 		$errors = $lukuvinkki->errors();
 
 		if(count($errors) == 0){
-			$lukuvinkki->update();
-			Redirect::to('/lukuvinkki/' . $lukuvinkki->id, array('message' => 'Lukuvinkki on muokattu onnistuneesti!'));
+                    $lukuvinkki->update($id);
+                    LukuvinkkiTag::destroy($id);
+
+                    try {
+                        $tags = $params['tags'];
+
+                        foreach ($tags as $tag) {
+                            $lt = new LukuvinkkiTag(array('tag_id' => $tag, 'lukuvinkki_id' => $id));
+                            $lt->save();
+                        }
+                    } catch (Exception $ex) {
+
+                    }
+
+                    Redirect::to('/lukuvinkki/' . $id, array('message' => 'Lukuvinkki on muokattu onnistuneesti!'));
 		}else{
-			View::make('lukuvinkki/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+                    View::make('lukuvinkki/edit.html', array('errors' => $errors, 'attributes' => $attributes));
 		}
 	}
 
@@ -81,6 +113,7 @@ class LukuvinkkiController extends BaseController{
 	}
 
 	public static function create() {
-		View::make('lukuvinkki/new.html');
+            $tags = Tag::all(); 
+            View::make('lukuvinkki/new.html', array('tags' => $tags));
 	}
  }

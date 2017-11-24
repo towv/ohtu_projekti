@@ -16,6 +16,16 @@ CREATE TABLE Kayttaja(
     salasana varchar (50) NOT NULL
 );
 
+CREATE TABLE Tag(
+    id SERIAL PRIMARY KEY,
+    nimi varchar(30) NOT NULL
+);
+
+CREATE TABLE LukuvinkkiTag(
+    lukuvinkki_id INTEGER REFERENCES Lukuvinkki(id),
+    tag_id INTEGER REFERENCES Tag(id)
+);
+
 
 CREATE TABLE Status(
     kayttaja_id INTEGER REFERENCES Kayttaja(id),
