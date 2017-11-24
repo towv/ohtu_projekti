@@ -28,15 +28,17 @@ class BaseModel{
 
     public function validate_isbn() {
         $errors = array();
-
-        if($this->isbn == '' || $this->isbn == null){
-          $errors[] = 'ISBN ei voi olla tyhjä.';
-        }
-        if(strlen($this->isbn) != 13){
-          $errors[] = 'ISBN pitäisi olla 13 merkkiä.';
-        }
-        if(!ctype_digit($this->isbn) ){
-          $errors[] = 'ISBN pitäisi olla pelkkiä numeroita';
+        
+        if ($this->tyyppi == "kirja") {
+            if($this->isbn == '' || $this->isbn == null){
+              $errors[] = 'ISBN ei voi olla tyhjä.';
+            }
+            if(strlen($this->isbn) != 13){
+              $errors[] = 'ISBN pitäisi olla 13 merkkiä.';
+            }
+            if(!ctype_digit($this->isbn) ){
+              $errors[] = 'ISBN pitäisi olla pelkkiä numeroita';
+            }
         }
         return $errors;
     }

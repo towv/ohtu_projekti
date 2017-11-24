@@ -8,10 +8,14 @@
         <br>
         <li><strong>Tekijä:</strong> {{lukuvinkki.tekija}}</li>
         <br>
+        {% if lukuvinkki.isbn %}
         <li><strong>ISBN:</strong> {{lukuvinkki.isbn}}</li>
         <br>
+        {% endif %}
+        {% if lukuvinkki.url %}
         <li><strong>URL:</strong> {{lukuvinkki.url}}</li>
         <br>
+        {% endif %}
         <li><strong>Julkaistu:</strong> {{lukuvinkki.julkaistu}}</li>
         <br>
         <li><strong>Luettu:</strong> <span class="badge">{{onkoLuettu}}</span></li>
