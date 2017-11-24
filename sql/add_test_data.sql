@@ -6,3 +6,4 @@ INSERT INTO Tag(nimi) VALUES ('swag');
 INSERT INTO Tag(nimi) VALUES ('tägi');
 INSERT INTO LukuvinkkiTag(tag_id, lukuvinkki_id) VALUES (1, 1);
 INSERT INTO LukuvinkkiTag(tag_id, lukuvinkki_id) VALUES (2, 2);
+INSERT INTO Kayttaja(tunnus, salasana) VALUES('topi','topitopi');
