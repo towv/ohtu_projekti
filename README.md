@@ -4,7 +4,7 @@ Tervetuloa Ketterien Gepardien Ohjelmistotuotantoprojektin github-sivuille!
 
 [![Build Status](https://travis-ci.org/Zamizmi/ohtu_projekti.svg?branch=master)](https://travis-ci.org/Zamizmi/ohtu_projekti)
 
-* [Linkki sovellukseen](http://laatopi.users.cs.helsinki.fi/tsoha/kirja)
+* [Linkki sovellukseen](http://laatopi.users.cs.helsinki.fi/tsoha/)
 
 * [Linkki backlogiin](https://docs.google.com/spreadsheets/d/10OBfmNmPVPwvg_Tim1979bz0jjIAt4BuUVJWD45U0sQ/edit?usp=sharing)
 
@@ -12,6 +12,7 @@ Tervetuloa Ketterien Gepardien Ohjelmistotuotantoprojektin github-sivuille!
 ### Sprintin Backlogit
 
 * [1. Sprintti](https://docs.google.com/spreadsheets/d/10OBfmNmPVPwvg_Tim1979bz0jjIAt4BuUVJWD45U0sQ/edit#gid=0)
+* [2. Sprintti](https://docs.google.com/spreadsheets/d/10OBfmNmPVPwvg_Tim1979bz0jjIAt4BuUVJWD45U0sQ/edit#gid=355548794)
 
 ### Gepardien Definition of Done
 Story on toteutettu DoDn mukaisesti, kun...
