@@ -19,4 +19,14 @@ class FeatureContext implements Context
     public function __construct()
     {
     }
+
+    /**
+         * @When username :arg1 and password :arg2 are entered
+         */
+        public function usernameAndPasswordAreEntered2($arg1, $arg2)
+        {
+            print("Jees");
+                }
+
+
 }
