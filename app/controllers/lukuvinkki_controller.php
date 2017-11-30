@@ -14,30 +14,55 @@ class LukuvinkkiController extends BaseController{
             if ($tags == NULL) {
                 $tags = "";
             }
-            
-
             View::make('lukuvinkki/show.html', array('lukuvinkki' => $lukuvinkki, 'tags' => $tags));
 	}
 
 	public static function edit($id){
 		$lukuvinkki = Lukuvinkki::find($id);
+                $tagit = LukuvinkkiTag::findTags($id);
                 $tags = Tag::all();
-		View::make('lukuvinkki/edit.html', array('attributes' => $lukuvinkki, 'tags' => $tags));
+		View::make('lukuvinkki/edit.html', array('attributes' => $lukuvinkki, 'tags' => $tags, 'tagit' => $tagit));
 	}
 
 	public static function store() {
 		$params = $_POST;
                 $tags = Tag::all();
+                $tyyppi = $params['tyyppi'];
                 
-		$attributes = array(
+		if ($tyyppi == 'kirja') {
+                    $attributes = array(
                     'otsikko' => $params['otsikko'],
                     'tekija' => $params['tekija'],
                     'isbn' => $params['isbn'],
+                    'url' => null,
+                    'tyyppi' => $params['tyyppi'],
+                    'kuvaus' => $params['kuvaus'],
+                    'julkaistu' => $params['julkaistu'],
+                    'sarja' => null
+                    );
+                } else if ($tyyppi == 'video') {
+                    $attributes = array(
+                    'otsikko' => $params['otsikko'],
+                    'tekija' => $params['tekija'],
+                    'isbn' => null,
                     'url' => $params['url'],
                     'tyyppi' => $params['tyyppi'],
                     'kuvaus' => $params['kuvaus'],
-                    'julkaistu' => $params['julkaistu']
-		);
+                    'julkaistu' => $params['julkaistu'],
+                    'sarja' => null
+                    );
+                } else {
+                    $attributes = array(
+                    'otsikko' => $params['otsikko'],
+                    'tekija' => $params['tekija'],
+                    'isbn' => null,
+                    'url' => $params['url'],
+                    'tyyppi' => $params['tyyppi'],
+                    'kuvaus' => $params['kuvaus'],
+                    'julkaistu' => $params['julkaistu'],
+                    'sarja' => $params['sarja']
+                    );
+                }
 		$lukuvinkki = new Lukuvinkki($attributes);
                 $tagit = $params['tagit'];
                 
@@ -85,16 +110,45 @@ class LukuvinkkiController extends BaseController{
 	public static function update($id){
 		$params = $_POST;
                 $tags = Tag::all();
+                $vinkki = Lukuvinkki::find($id);
+		$tyyppi = $vinkki->tyyppi;
                 
-		$attributes = array(
+		if ($tyyppi == 'kirja') {
+                    $attributes = array(
                     'otsikko' => $params['otsikko'],
                     'tekija' => $params['tekija'],
                     'isbn' => $params['isbn'],
-                    'url' => $params['url'],
-                    'tyyppi' => $params['tyyppi'],
+                    'url' => null,
+                    'tyyppi' => $tyyppi,
                     'kuvaus' => $params['kuvaus'],
-                    'julkaistu' => $params['julkaistu']
+                    'julkaistu' => $params['julkaistu'],
+                    'sarja' => null
 		);
+                    
+                } else if ($tyyppi == 'video') {
+                    $attributes = array(
+                    'otsikko' => $params['otsikko'],
+                    'tekija' => $params['tekija'],
+                    'isbn' => null,
+                    'url' => $params['url'],
+                    'tyyppi' => $tyyppi,
+                    'kuvaus' => $params['kuvaus'],
+                    'julkaistu' => $params['julkaistu'],
+                    'sarja' => null
+                    );
+                    
+                } else {
+                    $attributes = array(
+                    'otsikko' => $params['otsikko'],
+                    'tekija' => $params['tekija'],
+                    'isbn' => null,
+                    'url' => $params['url'],
+                    'tyyppi' => $tyyppi,
+                    'kuvaus' => $params['kuvaus'],
+                    'julkaistu' => $params['julkaistu'],
+                    'sarja' => $params['sarja']
+		);
+                }
 
 		$lukuvinkki = new Lukuvinkki($attributes);
 		$errors = $lukuvinkki->errors();
@@ -131,7 +185,6 @@ class LukuvinkkiController extends BaseController{
 	}
 
 	public static function destroy($id){
-
 		$lukuvinkki = new Lukuvinkki(array('id' => $id));
 		$lukuvinkki->destroy();
 
@@ -142,4 +195,32 @@ class LukuvinkkiController extends BaseController{
             $tags = Tag::all(); 
             View::make('lukuvinkki/new.html', array('tags' => $tags));
 	}
+        
+        public static function vinkkelit($id) {
+            $kayttaja = parent::get_user_logged_in();
+            $lukuvinkki = Lukuvinkki::find($id);
+            $vinkki = new KayttajaLukuvinkki(array(
+                'kayttaja_id' => $kayttaja->id,
+                'lukuvinkki_id' => $id
+            ));
+            if (!KayttajaLukuvinkki::find($id, $kayttaja->id)) {
+                $vinkki->save($id, $kayttaja->id);
+            
+            
+                Redirect::to('/user', array('message' => 'Lukuvinkki on lisätty käyttäjälle onnistuneesti!'));
+            }
+            Redirect::to('/user', array('error' => 'Lukuvinkki on jo lisätty käyttäjälle!'));
+        }
+        
+        public static function vinkkeliPoisto($id) {
+            $kayttaja = parent::get_user_logged_in();
+            $lukuvinkki = Lukuvinkki::find($id);
+            $vinkki = new KayttajaLukuvinkki(array(
+                'kayttaja_id' => $kayttaja->id,
+                'lukuvinkki_id' => $id
+            ));
+            $vinkki->destroy($id, $kayttaja->id);
+            
+            Redirect::to('/user', array('message' => 'Lukuvinkki on poistettu'));
+        }
  }
