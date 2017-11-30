@@ -30,6 +30,7 @@ class ComposerStaticInit957609a8983caeebe47801941b0b46ff
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\Translation\\' => 30,
+            'Symfony\\Component\\Process\\' => 26,
             'Symfony\\Component\\Filesystem\\' => 29,
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\DependencyInjection\\' => 38,
@@ -46,6 +47,10 @@ class ComposerStaticInit957609a8983caeebe47801941b0b46ff
         'I' => 
         array (
             'Interop\\Container\\' => 18,
+        ),
+        'F' => 
+        array (
+            'Facebook\\WebDriver\\' => 19,
         ),
         'D' => 
         array (
@@ -80,6 +85,10 @@ class ComposerStaticInit957609a8983caeebe47801941b0b46ff
         'Symfony\\Component\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
+        ),
+        'Symfony\\Component\\Process\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/process',
         ),
         'Symfony\\Component\\Filesystem\\' => 
         array (
@@ -120,6 +129,10 @@ class ComposerStaticInit957609a8983caeebe47801941b0b46ff
         'Interop\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
+        ),
+        'Facebook\\WebDriver\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/facebook/webdriver/lib',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
