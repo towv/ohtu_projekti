@@ -9,9 +9,9 @@ class StatusController extends BaseController{
         $kayttaja_id = self::get_user_logged_in()->id;
         
         $status = new Status(array(
-        'kayttaja_id' => $kayttaja_id,
-        'lukuvinkki' => $lukuvinkki,
-        'Status' => $status
+            'kayttaja_id' => $kayttaja_id,
+            'lukuvinkki' => $lukuvinkki,
+            'status' => $status
         ));
         
         if ($status->find($kayttaja_id, $lukuvinkki)) {

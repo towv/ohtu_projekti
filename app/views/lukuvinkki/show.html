@@ -18,8 +18,14 @@
         {% endif %}
         <li><strong>Julkaistu:</strong> {{lukuvinkki.julkaistu}}</li>
         <br>
-        <li><strong>Luettu:</strong> <span class="badge">{{onkoLuettu}}</span></li>
+        {% if user_logged_in %}
+        {% if status.status %}
+        <li><strong>Luettu:</strong> <span class="badge badge-success">suoritettu</span></li>
+        {% else %}
+        <li><strong>Luettu:</strong> <span class="badge badge-warning">kesken</span></li>
+        {% endif %}
         <br>
+        {% endif %}
         <li><strong>Tagit:</strong> 
             {% for tag in tags %}
             <span class="badge">{{tag.tag_nimi}}</span>
@@ -32,7 +38,7 @@
 </div>
 <br>
 <p>
-<a href="{{base_path}}/lukuvinkki/{{lukuvinkki.id}}/edit" class="btn btn-primary">Muokkaa</a>
-{{forms.destroy_button("#{base_path}/lukuvinkki/#{lukuvinkki.id}/destroy")}} 
+    <a href="{{base_path}}/lukuvinkki/{{lukuvinkki.id}}/edit" class="btn btn-primary">Muokkaa</a>
+    {{forms.destroy_button("#{base_path}/lukuvinkki/#{lukuvinkki.id}/destroy")}} 
 </p>
 {% endblock %}

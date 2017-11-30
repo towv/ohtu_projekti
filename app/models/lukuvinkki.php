@@ -1,13 +1,13 @@
 <?php
 
-include("lib/base_model.php");
+//include("lib/base_model.php");
 
 class Lukuvinkki extends BaseModel{
 	public $id, $otsikko, $tekija, $isbn, $url, $tyyppi, $kuvaus, $julkaistu;
 
 	public function __construct($attributes){
 		parent::__construct($attributes);
-                $this->validators = array('validate_name', 'validate_isbn', 'validate_writer');
+                $this->validators = array('validate_name', 'validate_isbn', 'validate_writer', 'validate_url', 'validate_julkaistu', 'validate_kuvaus', 'validate_tyyppi');
 	}
 
 
@@ -22,7 +22,7 @@ class Lukuvinkki extends BaseModel{
 				'otsikko' => $row['otsikko'],
 				'tekija' => $row['tekija'],
 				'isbn' => $row['isbn'],
-                'url' => $row['url'],
+                                'url' => $row['url'],
 				'tyyppi' => $row['tyyppi'],
 				'kuvaus' => $row['kuvaus'],
 				'julkaistu' => $row['julkaistu']

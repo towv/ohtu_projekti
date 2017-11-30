@@ -9,25 +9,32 @@ class Status extends BaseModel{
     }
     
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Status (kayttaja_id, lukuvinkki_id, status) VALUES (:kayttaja_id, :lukuvinkki_id, :arvostelu)');
+        $query = DB::connection()->prepare('INSERT INTO Status (kayttaja_id, lukuvinkki_id, status) VALUES (:kayttaja_id, :lukuvinkki_id, :status)');
         $query->execute(array(
             'kayttaja_id' => $this->kayttaja_id,
             'lukuvinkki_id' => $this->lukuvinkki_id,
             'status' => $this->status
         ));
-        $row = $query->fetch();
+        $query->fetch();
+  
     }
     
-    //Palauttaa true, jos löytyy status
+    //Palauttaa statuksen.
     public static function find($id, $kayttaja_id) {
-        $query = DB::connection()->prepare('SELECT Status.* FROM Status WHERE Status.kayttaja_id = :kayttaja_id AND Status.lukuvinkki_id = :id LIMIT 1');
-        $query->execute(array('id' => $id, 'kayttaja_id' => $kayttaja_id));
+        $query = DB::connection()->prepare('SELECT Status.* FROM Status WHERE Status.kayttaja_id = :kayttaja_id AND Status.lukuvinkki_id = :lukuvinkki_id LIMIT 1');
+        $query->execute(array('lukuvinkki_id' => $id, 'kayttaja_id' => $kayttaja_id));
         $row = $query->fetch();
+        $status = array();
         
         if ($row){
-            return true;
+            $status = new Status(array(
+                'kayttaja_id' => $row['kayttaja_id'],
+                'lukuvinkki_id' => $row['lukuvinkki_id'],
+                'status' => $row['status']
+            ));
+            return $status;
         }
-        return false;
+        return null;
     }
     
     public function update($id, $kayttaja_id){

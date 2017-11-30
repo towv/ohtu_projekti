@@ -2,59 +2,72 @@
 {% block content %}
 <h1>Lisää uusi lukuvinkki</h1>
 <div class="show">
-<form method="post" action="{{base_path}}/lukuvinkki">
-  <div class="form-group">
-    <label>Otsikko</label>
-    <input type="text" name="otsikko" class="form-control" value="{{attributes.otsikko}}">
-  </div>
+    <form method="post" action="{{base_path}}/lukuvinkki">
+        <div class="form-group">
+            <label>Otsikko</label>
+            <input type="text" name="otsikko" class="form-control" value="{{attributes.otsikko}}">
+        </div>
 
-  <div class="form-group">
-    <label>Tekijä</label>
-    <input type="text" name="tekija" class="form-control" value="{{attributes.tekija}}">
-  </div>
-    
-  <div class="form-group">
-    <label>ISBN</label>
-    <input type="text" name="isbn" class="form-control" value="{{attributes.isbn}}">
-  </div>
+        <div class="form-group">
+            <label>Tekijä</label>
+            <input type="text" name="tekija" class="form-control" value="{{attributes.tekija}}">
+        </div>
 
-  <div class="form-group">
-    <label>URL</label>
-    <input type="text" name="url" class="form-control" value="{{attributes.url}}">
-  </div>
-    
-  <div class="form-group">
-    <label>Tyyppi</label>
-    <select name="tyyppi" class="form-control" value="{{attributes.tyyppi}}">
-      <option>kirja</option>
-      <option>podcast</option>
-      <option>blog post</option>
-      <option>video</option>
-    </select>
-  </div>
-    
-  <div class="form-group">
-    <label>Julkaistu</label>
-    <input type="text" name="julkaistu" class="form-control" value="{{attributes.julkaistu}}">
-  </div>
-    
-  <div class="form-group">
-    <label>Kuvaus</label>
-    <input type="text" name="kuvaus" class="form-control" value="{{attributes.kuvaus}}">
-  </div>
-    
-    <div class="form-group">
-      <label>Tags</label>
-      <select name="tags[]" class="form-control" multiple="">
-            {% for tag in tags %}
+        <div class="form-group">
+            <label>ISBN</label>
+            <input type="text" name="isbn" class="form-control" value="{{attributes.isbn}}">
+        </div>
+
+        <div class="form-group">
+            <label>URL</label>
+            <input type="text" name="url" class="form-control" value="{{attributes.url}}">
+        </div>
+
+        <div class="form-group">
+            <label>Tyyppi</label>
+            <select name="tyyppi" class="form-control" value="{{attributes.tyyppi}}">
+                <option>kirja</option>
+                <option>podcast</option>
+                <option>blog post</option>
+                <option>video</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Julkaistu</label>
+            <input type="text" name="julkaistu" class="form-control" value="{{attributes.julkaistu}}">
+        </div>
+
+        <div class="form-group">
+            <label>Kuvaus</label>
+            <input type="text" name="kuvaus" class="form-control" value="{{attributes.kuvaus}}">
+        </div>
+
+        <div class="form-group">
+            <label>Tags</label>
+            <select name="tags[]" class="form-control" multiple="">
+                {% for tag in tags %}
                 <option value="{{tag.id}}">{{tag.nimi}}</option>
-            {% endfor %}
-      </select>
-    </div>
+                {% endfor %}
+            </select>
+        </div>
 
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary">Lisää</button>
-  </div>
-</form>
+        <div class="form-group">
+            <label>Uusi tagi</label>
+            <input type="text" name="tagit" class="form-control">
+        </div>
+        
+<!--        <div class="form-group">
+            <label>Status</label>
+            <select name="status" class="form-control">
+                <option>kesken</option>
+                <option>suoritettu</option>
+            </select>
+        </div>-->
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Lisää</button>
+        </div>
+    </form>
 </div>
 {% endblock %}
