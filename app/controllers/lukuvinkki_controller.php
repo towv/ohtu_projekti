@@ -82,7 +82,7 @@ class LukuvinkkiController extends BaseController{
 		return $status;
 	}
 
-	public static function update(){
+	public static function update($id){
 		$params = $_POST;
                 $tags = Tag::all();
                 
@@ -97,31 +97,34 @@ class LukuvinkkiController extends BaseController{
 		);
 
 		$lukuvinkki = new Lukuvinkki($attributes);
-                $tagit = $params['tagit'];
 		$errors = $lukuvinkki->errors();
 
 		if(count($errors) == 0){
-                    $lukuvinkki->update($lukuvinkki->id);
-                    LukuvinkkiTag::destroy($lukuvinkki->id);
+                    $lukuvinkki->update($id);
+                    LukuvinkkiTag::destroy($id);
 
                     try {
                         $tags = $params['tags'];
 
                         foreach ($tags as $tag) {
-                            $tag = new LukuvinkkiTag(array('tag_id' => $tag, 'lukuvinkki_id' => $lukuvinkki->id));
+                            $tag = new LukuvinkkiTag(array('tag_id' => $tag, 'lukuvinkki_id' => $id));
                             $tag->save();
                         }
                         
                         $tagi = explode( ',', $tagit);
-                        foreach( $tagi as $t ) {
+                        foreach($tagi as $t) {
                             $t = new Tag(array('nimi' => $t));
                             $t->save();
+                            $tagid = $t->id;
+                            $t = new LukuvinkkiTag(array('tag_id' => $tagid, 'lukuvinkki_id' => $id));
+                            $t->save();
                         }
+                        
                     } catch (Exception $ex) {
 
                     }
 
-                    Redirect::to('/lukuvinkki/' . $lukuvinkki->id, array('message' => 'Lukuvinkkiä on muokattu onnistuneesti!'));
+                    Redirect::to('/lukuvinkki/' . $id, array('message' => 'Lukuvinkkiä on muokattu onnistuneesti!'));
 		}else{
                     View::make('lukuvinkki/edit.html', array('errors' => $errors, 'attributes' => $attributes, 'tags' => $tags));
 		}
