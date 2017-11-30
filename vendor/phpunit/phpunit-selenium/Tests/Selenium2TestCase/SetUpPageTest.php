@@ -51,7 +51,11 @@
 class Tests_Selenium2TestCase_SetUpPageTest extends Tests_Selenium2TestCase_BaseTestCase {
     public function setUpPage()
     {
+	$this->setBrowser('firefox');
+        $this->setBrowserUrl('http://laatopi.users.cs.helsinki.fi/tsoha/');
         $this->url('html/test_type_page1.html');
+	$this->setBrowser('firefox');
+        $this->setBrowserUrl('http://laatopi.users.cs.helsinki.fi/tsoha/');
     }
 
     public function testSetUpPageIsExecuted()
