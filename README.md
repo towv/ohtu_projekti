@@ -3,6 +3,7 @@
 Tervetuloa Ketterien Gepardien Ohjelmistotuotantoprojektin github-sivuille!
 
 [![Build Status](https://travis-ci.org/Zamizmi/ohtu_projekti.svg?branch=master)](https://travis-ci.org/Zamizmi/ohtu_projekti)
+[![codecov](https://codecov.io/gh/Zamizmi/ohtu_projekti/branch/master/graph/badge.svg)](https://codecov.io/gh/Zamizmi/ohtu_projekti)
 
 * [Linkki sovellukseen](http://laatopi.users.cs.helsinki.fi/tsoha/)
 
