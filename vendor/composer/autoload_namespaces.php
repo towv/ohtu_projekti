@@ -11,4 +11,8 @@ return array(
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
     'Slim' => array($vendorDir . '/slim/slim'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
+    'Behat\\Transliterator' => array($vendorDir . '/behat/transliterator/src'),
+    'Behat\\Testwork' => array($vendorDir . '/behat/behat/src'),
+    'Behat\\Gherkin' => array($vendorDir . '/behat/gherkin/src'),
+    'Behat\\Behat' => array($vendorDir . '/behat/behat/src'),
 );
