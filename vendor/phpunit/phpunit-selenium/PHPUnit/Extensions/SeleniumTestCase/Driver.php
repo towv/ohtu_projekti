@@ -261,14 +261,6 @@ class PHPUnit_Extensions_SeleniumTestCase_Driver
     {
         $this->testId = $testId;
     }
-	
-	/**
-     * @return integer $testId
-     */
-    public function getTestId()
-    {
-        return $this->testId;
-    }
 
     /**
      * @param  string $name
@@ -368,7 +360,7 @@ class PHPUnit_Extensions_SeleniumTestCase_Driver
     {
         return $this->port;
     }
-	
+
     /**
      * @param  integer $timeout for Selenium RC in seconds
      * @throws InvalidArgumentException
@@ -439,47 +431,7 @@ class PHPUnit_Extensions_SeleniumTestCase_Driver
 
         $this->useWaitForPageToLoad = $flag;
     }
-	/**
-     * Sets whether captureScreenshotOnFailure (TRUE) or (FALSE)
-     * if true, the takeScreenshot() is triggered in onNotSuccessfulTest().
-     *
-     * @param  boolean $flag
-     * @throws InvalidArgumentException
-     */
-	public function setCaptureScreenshotOnFailure($flag)
-    {
-        if (!is_bool($flag)) {
-            throw PHPUnit_Util_InvalidArgumentHelper::factory(1, 'boolean');
-        }
 
-        $this->captureScreenshotOnFailure = $flag;
-    }
-	
-	/**
-     * @param  string $screenshotUrl
-     * @throws InvalidArgumentException
-     */
-    public function setScreenshotUrl($screenshotUrl)
-    {
-        if (!is_string($screenshotUrl)) {
-            throw PHPUnit_Util_InvalidArgumentHelper::factory(1, 'string');
-        }
-
-        $this->screenshotUrl = $screenshotUrl;
-    }
-	/**
-     * @param  string $screenshotPath
-     * @throws InvalidArgumentException
-     */
-    public function setScreenshotPath($screenshotPath)
-    {
-        if (!is_string($screenshotPath)) {
-            throw PHPUnit_Util_InvalidArgumentHelper::factory(1, 'string');
-        }
-
-        $this->screenshotPath = $screenshotPath;
-    }
-	
     /**
      * Adds allowed user commands into {@link self::$userCommands}. See
      * {@link self::__call()} (switch/case -> default) for usage.
@@ -489,8 +441,6 @@ class PHPUnit_Extensions_SeleniumTestCase_Driver
      * @return $this
      * @see    self::__call()
      */
-	 
-	
     public function addUserCommand($command)
     {
         if (!is_string($command)) {
