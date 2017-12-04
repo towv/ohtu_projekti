@@ -16,7 +16,23 @@ $routes->get('/lukuvinkki', function() {
 });
 
 $routes->get('/lukuvinkki/new', function() {
-    LukuvinkkiController::create();
+    LukuvinkkiController::choose();
+});
+
+$routes->get('/lukuvinkki/kirja', function() {
+    LukuvinkkiController::createKirja();
+});
+
+$routes->get('/lukuvinkki/podcast', function() {
+    LukuvinkkiController::createPodcast();
+});
+
+$routes->get('/lukuvinkki/blogpost', function() {
+    LukuvinkkiController::createBlogpost();
+});
+
+$routes->get('/lukuvinkki/video', function() {
+    LukuvinkkiController::createVideo();
 });
 
 $routes->get('/lukuvinkki/:id', function($id) {
@@ -36,15 +52,27 @@ $routes->post('/lukuvinkki/:id/destroy', function($id) {
 });
 
 $routes->post('/lukuvinkki/:id/add', function($id) {
-    LukuvinkkiController::vinkkelit($id);
+    KayttajaController::addTip($id);
 });
 
 $routes->post('/lukuvinkki/:id/delete', function($id) {
-    LukuvinkkiController::vinkkeliPoisto($id);
+    KayttajaController::removeTip($id);
 });
 
-$routes->post('/lukuvinkki', function() {
-    LukuvinkkiController::store();
+$routes->post('/lukuvinkki/kirja', function() {
+    LukuvinkkiController::storeKirja();
+});
+
+$routes->post('/lukuvinkki/podcast', function() {
+    LukuvinkkiController::storePodcast();
+});
+
+$routes->post('/lukuvinkki/blogpost', function() {
+    LukuvinkkiController::storeBlogpost();
+});
+
+$routes->post('/lukuvinkki/video', function() {
+    LukuvinkkiController::storeVideo();
 });
 
 // Kirjautuminen
@@ -59,7 +87,7 @@ $routes->post('/signup', function() {
     KayttajaController::store();
 });
 $routes->get('/user', function() {
-    KayttajaController::lukuvinkkelit();
+    KayttajaController::showUsersTips();
 });
 $routes->get('/kayttaja/:id', function() {
     KayttajaController::show();

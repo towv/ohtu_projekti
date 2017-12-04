@@ -48,13 +48,39 @@ class KayttajaController extends BaseController {
         View::make('kayttaja/show.html', array('message' => 'Täällä ei ole vielä mitään!', 'kayttaja' => $kayttaja));
     }
 
-    public static function lukuvinkkelit() {
+    public static function showUsersTips() {
         self::check_logged_in();
         $kayttaja = parent::get_user_logged_in();
         
         $vinkit = KayttajaLukuvinkki::findTips($kayttaja->id);
         
         View::make('kayttaja/vinkit.html', array('vinkit' => $vinkit, 'kayttaja' => $kayttaja));
+    }
+    
+    public static function addTip($id) {
+        $kayttaja = parent::get_user_logged_in();
+        $vinkki = new KayttajaLukuvinkki(array(
+            'kayttaja_id' => $kayttaja->id,
+            'lukuvinkki_id' => $id
+        ));
+        if (!KayttajaLukuvinkki::find($id, $kayttaja->id)) {
+            $vinkki->save($id, $kayttaja->id);
+
+
+            Redirect::to('/user', array('message' => 'Lukuvinkki on lisätty käyttäjälle onnistuneesti!'));
+        }
+        Redirect::to('/user', array('error' => 'Lukuvinkki on jo lisätty käyttäjälle!'));
+    }
+
+    public static function removeTip($id) {
+        $kayttaja = parent::get_user_logged_in();
+        $vinkki = new KayttajaLukuvinkki(array(
+            'kayttaja_id' => $kayttaja->id,
+            'lukuvinkki_id' => $id
+        ));
+        $vinkki->destroy($id, $kayttaja->id);
+
+        Redirect::to('/user', array('message' => 'Lukuvinkki on poistettu'));
     }
 
 }

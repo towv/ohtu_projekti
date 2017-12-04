@@ -1,49 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Muokkaa kirjaa {{attributes.nimi}}</h1>
+<h1>Lisää uusi blogpost lukuvinkki</h1>
+
+
 <div class="show">
-    <form method="post" action="{{base_path}}/lukuvinkki/{{attributes.id}}/edit">
+    <form method="post" action="{{base_path}}/lukuvinkki/blogpost">
         <div class="form-group">
             <label>Otsikko</label>
             <input type="text" name="otsikko" class="form-control" value="{{attributes.otsikko}}">
         </div>
-        
-        {% if attributes.sarja %}
+
         <div class="form-group">
-            <label>Sarja</label>
-            <input type="text" name="kuvaus" class="form-control" value="{{attributes.sarja}}">
+            <label>Blogin nimi</label>
+            <input type="text" name="sarja" class="form-control" value="{{attributes.sarja}}">
         </div>
-        {% endif %}
 
         <div class="form-group">
             <label>Tekijä</label>
             <input type="text" name="tekija" class="form-control" value="{{attributes.tekija}}">
         </div>
-        
-        {% if attributes.isbn %}
-        <div class="form-group">
-            <label>ISBN</label>
-            <input type="textarea" name="isbn" class="form-control" value="{{attributes.isbn}}">
-        </div>
-        {% endif %}
-        {% if attributes.url %}
+
         <div class="form-group">
             <label>URL</label>
             <input type="text" name="url" class="form-control" value="{{attributes.url}}">
         </div>
-        {% endif %}
+
+        <div class="form-group">
+            <label>Tyyppi</label>
+            <input type="text" name="tyyppi" class="form-control" value="blogpost">
+        </div>
 
         <div class="form-group">
             <label>Julkaistu</label>
             <input type="text" name="julkaistu" class="form-control" value="{{attributes.julkaistu}}" 
-                   placeholder="vvvv tai pp.kk.vvvv">
+                   placeholder="pp.kk.vvvv">
         </div>
 
         <div class="form-group">
             <label>Kuvaus</label>
             <input type="text" name="kuvaus" class="form-control" value="{{attributes.kuvaus}}">
         </div>
-        
+
         <div class="form-group">
             <label>Tags</label>
             <select name="tags[]" class="form-control" multiple="">
@@ -52,16 +49,15 @@
                 {% endfor %}
             </select>
         </div>
-        
+
         <div class="form-group">
             <label>Uusi tagi</label>
             <input type="text" name="tagit" class="form-control" placeholder="Erottele tagit pilkulla">
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Tallenna muutokset</button>
+            <button type="submit" class="btn btn-primary">Lisää</button>
         </div>
     </form>
 </div>
-
 {% endblock %}
