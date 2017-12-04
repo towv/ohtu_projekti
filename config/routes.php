@@ -52,11 +52,11 @@ $routes->post('/lukuvinkki/:id/destroy', function($id) {
 });
 
 $routes->post('/lukuvinkki/:id/add', function($id) {
-    LukuvinkkiController::vinkkelit($id);
+    KayttajaController::addTip($id);
 });
 
 $routes->post('/lukuvinkki/:id/delete', function($id) {
-    LukuvinkkiController::vinkkeliPoisto($id);
+    KayttajaController::removeTip($id);
 });
 
 $routes->post('/lukuvinkki/kirja', function() {
@@ -87,7 +87,7 @@ $routes->post('/signup', function() {
     KayttajaController::store();
 });
 $routes->get('/user', function() {
-    KayttajaController::lukuvinkkelit();
+    KayttajaController::showUsersTips();
 });
 $routes->get('/kayttaja/:id', function() {
     KayttajaController::show();

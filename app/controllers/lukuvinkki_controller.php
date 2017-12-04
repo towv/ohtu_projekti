@@ -44,33 +44,15 @@ class LukuvinkkiController extends BaseController {
         );
 
         $lukuvinkki = new Lukuvinkki($attributes);
-
-        $tagit = $params['tagit'];
-
+        
         $errors = $lukuvinkki->errors();
 
         if (count($errors) == 0) {
             $lukuvinkki->save();
 
-            try {
-                $tags = $params['tags'];
-
-                foreach ($tags as $tag) {
-                    $tag = new LukuvinkkiTag(array('tag_id' => $tag, 'lukuvinkki_id' => $lukuvinkki->id));
-                    $tag->save();
-                }
-
-                $tagi = explode(',', $tagit);
-                foreach ($tagi as $t) {
-                    $t = new Tag(array('nimi' => $t));
-                    $t->save();
-                    $tagid = $t->id;
-                    $t = new LukuvinkkiTag(array('tag_id' => $tagid, 'lukuvinkki_id' => $lukuvinkki->id));
-                    $t->save();
-                }
-            } catch (Exception $ex) {
-                
-            }
+            $vinkki_controller = new LukuvinkkiController;
+            $vinkki_controller->handeTags($params, $lukuvinkki);
+            
             Redirect::to('/lukuvinkki/' . $lukuvinkki->id, array('message' => 'Lukuvinkki on lisätty!'));
         } else {
             View::make('lukuvinkki/kirja.html', array('errors' => $errors, 'attributes' => $attributes, 'tags' => $tags));
@@ -94,32 +76,14 @@ class LukuvinkkiController extends BaseController {
 
         $lukuvinkki = new Lukuvinkki($attributes);
 
-        $tagit = $params['tagit'];
-
         $errors = $lukuvinkki->errors();
 
         if (count($errors) == 0) {
             $lukuvinkki->save();
-
-            try {
-                $tags = $params['tags'];
-
-                foreach ($tags as $tag) {
-                    $tag = new LukuvinkkiTag(array('tag_id' => $tag, 'lukuvinkki_id' => $lukuvinkki->id));
-                    $tag->save();
-                }
-
-                $tagi = explode(',', $tagit);
-                foreach ($tagi as $t) {
-                    $t = new Tag(array('nimi' => $t));
-                    $t->save();
-                    $tagid = $t->id;
-                    $t = new LukuvinkkiTag(array('tag_id' => $tagid, 'lukuvinkki_id' => $lukuvinkki->id));
-                    $t->save();
-                }
-            } catch (Exception $ex) {
-                
-            }
+            
+            $vinkki_controller = new LukuvinkkiController;
+            $vinkki_controller->handeTags($params, $lukuvinkki);
+            
             Redirect::to('/lukuvinkki/' . $lukuvinkki->id, array('message' => 'Lukuvinkki on lisätty!'));
         } else {
             View::make('lukuvinkki/podcast.html', array('errors' => $errors, 'attributes' => $attributes, 'tags' => $tags));
@@ -143,32 +107,14 @@ class LukuvinkkiController extends BaseController {
 
         $lukuvinkki = new Lukuvinkki($attributes);
 
-        $tagit = $params['tagit'];
-
         $errors = $lukuvinkki->errors();
 
         if (count($errors) == 0) {
             $lukuvinkki->save();
 
-            try {
-                $tags = $params['tags'];
-
-                foreach ($tags as $tag) {
-                    $tag = new LukuvinkkiTag(array('tag_id' => $tag, 'lukuvinkki_id' => $lukuvinkki->id));
-                    $tag->save();
-                }
-
-                $tagi = explode(',', $tagit);
-                foreach ($tagi as $t) {
-                    $t = new Tag(array('nimi' => $t));
-                    $t->save();
-                    $tagid = $t->id;
-                    $t = new LukuvinkkiTag(array('tag_id' => $tagid, 'lukuvinkki_id' => $lukuvinkki->id));
-                    $t->save();
-                }
-            } catch (Exception $ex) {
-                
-            }
+            $vinkki_controller = new LukuvinkkiController;
+            $vinkki_controller->handeTags($params, $lukuvinkki);
+            
             Redirect::to('/lukuvinkki/' . $lukuvinkki->id, array('message' => 'Lukuvinkki on lisätty!'));
         } else {
             View::make('lukuvinkki/blogpost.html', array('errors' => $errors, 'attributes' => $attributes, 'tags' => $tags));
@@ -192,35 +138,41 @@ class LukuvinkkiController extends BaseController {
 
         $lukuvinkki = new Lukuvinkki($attributes);
 
-        $tagit = $params['tagit'];
-
         $errors = $lukuvinkki->errors();
 
         if (count($errors) == 0) {
             $lukuvinkki->save();
 
-            try {
-                $tags = $params['tags'];
-
-                foreach ($tags as $tag) {
-                    $tag = new LukuvinkkiTag(array('tag_id' => $tag, 'lukuvinkki_id' => $lukuvinkki->id));
-                    $tag->save();
-                }
-
-                $tagi = explode(',', $tagit);
-                foreach ($tagi as $t) {
-                    $t = new Tag(array('nimi' => $t));
-                    $t->save();
-                    $tagid = $t->id;
-                    $t = new LukuvinkkiTag(array('tag_id' => $tagid, 'lukuvinkki_id' => $lukuvinkki->id));
-                    $t->save();
-                }
-            } catch (Exception $ex) {
-                
-            }
+            $vinkki_controller = new LukuvinkkiController;
+            $vinkki_controller->handeTags($params, $lukuvinkki);
+            
             Redirect::to('/lukuvinkki/' . $lukuvinkki->id, array('message' => 'Lukuvinkki on lisätty!'));
         } else {
             View::make('lukuvinkki/video.html', array('errors' => $errors, 'attributes' => $attributes, 'tags' => $tags));
+        }
+    }
+    
+    public function handeTags($params, $lukuvinkki) {
+        $tagit = $params['tagit'];
+        
+        try {
+            $tags = $params['tags'];
+
+            foreach ($tags as $tag) {
+                $tag = new LukuvinkkiTag(array('tag_id' => $tag, 'lukuvinkki_id' => $lukuvinkki->id));
+                $tag->save();
+            }
+
+            $tagi = explode(',', $tagit);
+            foreach ($tagi as $t) {
+                $t = new Tag(array('nimi' => $t));
+                $t->save();
+                $tagid = $t->id;
+                $t = new LukuvinkkiTag(array('tag_id' => $tagid, 'lukuvinkki_id' => $lukuvinkki->id));
+                $t->save();
+            }
+        } catch (Exception $ex) {
+
         }
     }
 
@@ -280,25 +232,8 @@ class LukuvinkkiController extends BaseController {
             $lukuvinkki->update($id);
             LukuvinkkiTag::destroy($id);
 
-            try {
-                $tags = $params['tags'];
-
-                foreach ($tags as $tag) {
-                    $tag = new LukuvinkkiTag(array('tag_id' => $tag, 'lukuvinkki_id' => $id));
-                    $tag->save();
-                }
-
-                $tagi = explode(',', $tagit);
-                foreach ($tagi as $t) {
-                    $t = new Tag(array('nimi' => $t));
-                    $t->save();
-                    $tagid = $t->id;
-                    $t = new LukuvinkkiTag(array('tag_id' => $tagid, 'lukuvinkki_id' => $id));
-                    $t->save();
-                }
-            } catch (Exception $ex) {
-                
-            }
+            $vinkki_controller = new LukuvinkkiController;
+            $vinkki_controller->handeTags($params, $lukuvinkki);
 
             Redirect::to('/lukuvinkki/' . $id, array('message' => 'Lukuvinkkiä on muokattu onnistuneesti!'));
         } else {
@@ -333,32 +268,5 @@ class LukuvinkkiController extends BaseController {
         View::make('lukuvinkki/video.html', array('tags' => $tags));
     }
 
-    public static function vinkkelit($id) {
-        $kayttaja = parent::get_user_logged_in();
-        $lukuvinkki = Lukuvinkki::find($id);
-        $vinkki = new KayttajaLukuvinkki(array(
-            'kayttaja_id' => $kayttaja->id,
-            'lukuvinkki_id' => $id
-        ));
-        if (!KayttajaLukuvinkki::find($id, $kayttaja->id)) {
-            $vinkki->save($id, $kayttaja->id);
-
-
-            Redirect::to('/user', array('message' => 'Lukuvinkki on lisätty käyttäjälle onnistuneesti!'));
-        }
-        Redirect::to('/user', array('error' => 'Lukuvinkki on jo lisätty käyttäjälle!'));
-    }
-
-    public static function vinkkeliPoisto($id) {
-        $kayttaja = parent::get_user_logged_in();
-        $lukuvinkki = Lukuvinkki::find($id);
-        $vinkki = new KayttajaLukuvinkki(array(
-            'kayttaja_id' => $kayttaja->id,
-            'lukuvinkki_id' => $id
-        ));
-        $vinkki->destroy($id, $kayttaja->id);
-
-        Redirect::to('/user', array('message' => 'Lukuvinkki on poistettu'));
-    }
 
 }

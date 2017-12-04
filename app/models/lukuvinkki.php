@@ -1,6 +1,6 @@
 <?php
 
-include("lib/base_model.php");
+//include("lib/base_model.php");
 
 class Lukuvinkki extends BaseModel {
 
@@ -37,7 +37,6 @@ class Lukuvinkki extends BaseModel {
         $query->execute(array('id' => $id));
         $row = $query->fetch();
         $lukuvinkki = array();
-
 
         if ($row) {
             $lukuvinkki = new Lukuvinkki(array(
