@@ -23,9 +23,9 @@ class LukuvinkkiController extends BaseController {
 
     public static function edit($id) {
         $lukuvinkki = Lukuvinkki::find($id);
-        $tagit = LukuvinkkiTag::findTags($id);
         $tags = Tag::all();
-        View::make('lukuvinkki/edit.html', array('attributes' => $lukuvinkki, 'tags' => $tags, 'tagit' => $tagit));
+        
+        View::make('lukuvinkki/edit.html', array('attributes' => $lukuvinkki, 'tags' => $tags));
     }
 
     public static function storeKirja() {
