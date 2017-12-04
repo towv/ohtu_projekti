@@ -31,15 +31,13 @@ class FeatureContext extends PHPUnit_Extensions_Selenium2TestCase implements Con
     /**
          * @When username :arg1 and password :arg2 are entered
          */
-        public function usernameAndPasswordAreEntered2($arg1, $arg2)
-        {
-            print("Jees");
-                }
+    public function usernameAndPasswordAreEntered2($arg1, $arg2)
+    {
+        print("Jees");
+    }
 
 
-}
 
-    
 
     /**
      * @Given kirjaudu sisaan is pressed
@@ -51,5 +49,6 @@ class FeatureContext extends PHPUnit_Extensions_Selenium2TestCase implements Con
         $myTest->setUp();           // Your setup will always be called prior the test.
         $myTest->prepareSession();  // Specific to Selenium test case, called from `runTest` method.
         $myTest->testTitle();
-       
+
     }
+}
