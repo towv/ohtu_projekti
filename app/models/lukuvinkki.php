@@ -1,6 +1,6 @@
 <?php
 
-include("lib/base_model.php");
+//include("lib/base_model.php");
 
 class Lukuvinkki extends BaseModel{
 	public $id, $otsikko, $tekija, $isbn, $url, $tyyppi, $kuvaus, $julkaistu, $sarja;
