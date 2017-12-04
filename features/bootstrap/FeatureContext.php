@@ -35,6 +35,7 @@ class FeatureContext extends PHPUnit_Extensions_Selenium2TestCase implements Con
     {
         print("Jees");
     }
+}
 
 
 
@@ -51,4 +52,3 @@ class FeatureContext extends PHPUnit_Extensions_Selenium2TestCase implements Con
         $myTest->testTitle();
 
     }
-}
