@@ -22,7 +22,7 @@ before_script:
 # use the $DB env variable to determine the phpunit.xml to use
 script: 
   - phpunit --configuration phpunit_$DB.xml --coverage-text
-  - vendor/bin/phpunit --coverage-clover=coverage.xml
+  - vendor/bin/phpunit --coverage-clover=coverage.html
 # configure notifications (email, IRC, campfire etc)
 after_success:
     - bash <(curl -s https://codecov.io/bash)
