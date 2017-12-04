@@ -1,269 +1,73 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Lisää uusi lukuvinkki</h1>
-
-
-<div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Kirja</a>
-            </h4>
+<div class="show">
+    <form method="post" action="{{base_path}}/lukuvinkki">
+        <div class="form-group">
+            <label>Otsikko</label>
+            <input type="text" name="otsikko" class="form-control" value="{{attributes.otsikko}}">
         </div>
-        <div id="collapse1" class="panel-collapse collapse">
-            <div class="panel-body">
-                <form method="post" action="{{base_path}}/lukuvinkki">
-                    <div class="form-group">
-                        <label>Otsikko</label>
-                        <input type="text" name="otsikko" class="form-control" value="{{attributes.otsikko}}">
-                    </div>
 
-                    <div class="form-group">
-                        <label>Tekijä</label>
-                        <input type="text" name="tekija" class="form-control" value="{{attributes.tekija}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label>ISBN</label>
-                        <input type="text" name="isbn" class="form-control" value="{{attributes.isbn}}">
-                    </div>
-                    
-                    
-                    <div class="form-group">
-                        <label>Tyyppi</label>
-                        <input type="text" name="tyyppi" class="form-control" value="kirja">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Julkaistu</label>
-                        <input type="text" name="julkaistu" class="form-control" value="{{attributes.julkaistu}}" 
-                               placeholder="vvvv tai pp.kk.vvvv">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Kuvaus</label>
-                        <input type="text" name="kuvaus" class="form-control" value="{{attributes.kuvaus}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Tags</label>
-                        <select name="tags[]" class="form-control" multiple="">
-                            {% for tag in tags %}
-                            <option value="{{tag.id}}">{{tag.nimi}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Uusi tagi</label>
-                        <input type="text" name="tagit" class="form-control" placeholder="Erottele tagit pilkulla">
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Lisää</button>
-                    </div>
-                </form>
-            </div>
+        <div class="form-group">
+            <label>Tekijä</label>
+            <input type="text" name="tekija" class="form-control" value="{{attributes.tekija}}">
         </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Video</a>
-            </h4>
+
+        <div class="form-group">
+            <label>ISBN</label>
+            <input type="text" name="isbn" class="form-control" value="{{attributes.isbn}}">
         </div>
-        <div id="collapse2" class="panel-collapse collapse">
-            <div class="panel-body">
-                <form method="post" action="{{base_path}}/lukuvinkki">
-                    <div class="form-group">
-                        <label>Otsikko</label>
-                        <input type="text" name="otsikko" class="form-control" value="{{attributes2.otsikko}}">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Tekijä</label>
-                        <input type="text" name="tekija" class="form-control" value="{{attributes2.tekija}}">
-                    </div>
 
-                    <div class="form-group">
-                        <label>URL</label>
-                        <input type="text" name="url" class="form-control" value="{{attributes2.url}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Tyyppi</label>
-                        <input type="text" name="tyyppi" class="form-control" value="video">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Julkaistu</label>
-                        <input type="text" name="julkaistu" class="form-control" value="{{attributes2.julkaistu}}" 
-                               placeholder="vvvv tai pp.kk.vvvv">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Kuvaus</label>
-                        <input type="text" name="kuvaus" class="form-control" value="{{attributes2.kuvaus}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Tags</label>
-                        <select name="tags[]" class="form-control" multiple="">
-                            {% for tag in tags %}
-                            <option value="{{tag.id}}">{{tag.nimi}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Uusi tagi</label>
-                        <input type="text" name="tagit" class="form-control" placeholder="Erottele tagit pilkulla">
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Lisää</button>
-                    </div>
-                </form>
-            </div>
+        <div class="form-group">
+            <label>URL</label>
+            <input type="text" name="url" class="form-control" value="{{attributes.url}}">
         </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Blog post</a>
-            </h4>
+
+        <div class="form-group">
+            <label>Tyyppi</label>
+            <select name="tyyppi" class="form-control" value="{{attributes.tyyppi}}">
+                <option>kirja</option>
+                <option>podcast</option>
+                <option>blog post</option>
+                <option>video</option>
+            </select>
         </div>
-        <div id="collapse3" class="panel-collapse collapse">
-            <div class="panel-body">
-                <form method="post" action="{{base_path}}/lukuvinkki">
-                    <div class="form-group">
-                        <label>Otsikko</label>
-                        <input type="text" name="otsikko" class="form-control" value="{{attributes3.otsikko}}">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Blogin nimi</label>
-                        <input type="text" name="sarja" class="form-control" value="{{attributes3.sarja}}">
-                    </div>
 
-                    <div class="form-group">
-                        <label>Tekijä</label>
-                        <input type="text" name="tekija" class="form-control" value="{{attributes3.tekija}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label>URL</label>
-                        <input type="text" name="url" class="form-control" value="{{attributes3.url}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Tyyppi</label>
-                        <input type="text" name="tyyppi" class="form-control" value="blogpost">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Julkaistu</label>
-                        <input type="text" name="julkaistu" class="form-control" value="{{attributes3.julkaistu}}" 
-                               placeholder="vvvv tai pp.kk.vvvv">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Kuvaus</label>
-                        <input type="text" name="kuvaus" class="form-control" value="{{attributes3.kuvaus}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Tags</label>
-                        <select name="tags[]" class="form-control" multiple="">
-                            {% for tag in tags %}
-                            <option value="{{tag.id}}">{{tag.nimi}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Uusi tagi</label>
-                        <input type="text" name="tagit" class="form-control" placeholder="Erottele tagit pilkulla">
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Lisää</button>
-                    </div>
-                </form>
-            </div>
+        <div class="form-group">
+            <label>Julkaistu</label>
+            <input type="text" name="julkaistu" class="form-control" value="{{attributes.julkaistu}}">
         </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Podcast</a>
-            </h4>
+
+        <div class="form-group">
+            <label>Kuvaus</label>
+            <input type="text" name="kuvaus" class="form-control" value="{{attributes.kuvaus}}">
         </div>
-        <div id="collapse4" class="panel-collapse collapse">
-            <div class="panel-body">
-                <form method="post" action="{{base_path}}/lukuvinkki">
-                    <div class="form-group">
-                        <label>Otsikko</label>
-                        <input type="text" name="otsikko" class="form-control" value="{{attributes3.otsikko}}">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Sarja</label>
-                        <input type="text" name="sarja" class="form-control" value="{{attributes3.sarja}}">
-                    </div>
 
-                    <div class="form-group">
-                        <label>Tekijä</label>
-                        <input type="text" name="tekija" class="form-control" value="{{attributes3.tekija}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label>URL</label>
-                        <input type="text" name="url" class="form-control" value="{{attributes3.url}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Tyyppi</label>
-                        <input type="text" name="tyyppi" class="form-control" value="podcast">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Julkaistu</label>
-                        <input type="text" name="julkaistu" class="form-control" value="{{attributes3.julkaistu}}" 
-                               placeholder="vvvv tai pp.kk.vvvv">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Kuvaus</label>
-                        <input type="text" name="kuvaus" class="form-control" value="{{attributes3.kuvaus}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Tags</label>
-                        <select name="tags[]" class="form-control" multiple="">
-                            {% for tag in tags %}
-                            <option value="{{tag.id}}">{{tag.nimi}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Uusi tagi</label>
-                        <input type="text" name="tagit" class="form-control" placeholder="Erottele tagit pilkulla">
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Lisää</button>
-                    </div>
-                </form>
-            </div>
+        <div class="form-group">
+            <label>Tags</label>
+            <select name="tags[]" class="form-control" multiple="">
+                {% for tag in tags %}
+                <option value="{{tag.id}}">{{tag.nimi}}</option>
+                {% endfor %}
+            </select>
         </div>
-    </div>
-</div> 
 
+        <div class="form-group">
+            <label>Uusi tagi</label>
+            <input type="text" name="tagit" class="form-control">
+        </div>
+        
+<!--        <div class="form-group">
+            <label>Status</label>
+            <select name="status" class="form-control">
+                <option>kesken</option>
+                <option>suoritettu</option>
+            </select>
+        </div>-->
 
-
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Lisää</button>
+        </div>
+    </form>
 </div>
 {% endblock %}
-
-

@@ -7,19 +7,13 @@ CREATE TABLE Lukuvinkki(
     url varchar(50),
     tyyppi varchar(20) NOT NULL,
     kuvaus varchar(300),
-    julkaistu varchar(20) NOT NULL,
-    sarja varchar(50)
+    julkaistu varchar(20) NOT NULL
 );
 
 CREATE TABLE Kayttaja(
     id SERIAL PRIMARY KEY,
     tunnus varchar(50) NOT NULL,
     salasana varchar (50) NOT NULL
-);
-
-CREATE TABLE KayttajaLukuvinkki(
-    kayttaja_id INTEGER REFERENCES Kayttaja(id),
-    lukuvinkki_id INTEGER REFERENCES Lukuvinkki(id)
 );
 
 CREATE TABLE Tag(
