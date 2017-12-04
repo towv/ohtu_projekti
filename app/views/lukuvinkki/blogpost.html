@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Lisää uusi blogpost lukuvinkki</h1>
+
+
+<div class="show">
+    <form method="post" action="{{base_path}}/lukuvinkki/blogpost">
+        <div class="form-group">
+            <label>Otsikko</label>
+            <input type="text" name="otsikko" class="form-control" value="{{attributes.otsikko}}">
+        </div>
+
+        <div class="form-group">
+            <label>Blogin nimi</label>
+            <input type="text" name="sarja" class="form-control" value="{{attributes.sarja}}">
+        </div>
+
+        <div class="form-group">
+            <label>Tekijä</label>
+            <input type="text" name="tekija" class="form-control" value="{{attributes.tekija}}">
+        </div>
+
+        <div class="form-group">
+            <label>URL</label>
+            <input type="text" name="url" class="form-control" value="{{attributes.url}}">
+        </div>
+
+        <div class="form-group">
+            <label>Tyyppi</label>
+            <input type="text" name="tyyppi" class="form-control" value="blogpost">
+        </div>
+
+        <div class="form-group">
+            <label>Julkaistu</label>
+            <input type="text" name="julkaistu" class="form-control" value="{{attributes.julkaistu}}" 
+                   placeholder="pp.kk.vvvv">
+        </div>
+
+        <div class="form-group">
+            <label>Kuvaus</label>
+            <input type="text" name="kuvaus" class="form-control" value="{{attributes.kuvaus}}">
+        </div>
+
+        <div class="form-group">
+            <label>Tags</label>
+            <select name="tags[]" class="form-control" multiple="">
+                {% for tag in tags %}
+                <option value="{{tag.id}}">{{tag.nimi}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Uusi tagi</label>
+            <input type="text" name="tagit" class="form-control" placeholder="Erottele tagit pilkulla">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Lisää</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
