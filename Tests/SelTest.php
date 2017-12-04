@@ -1,19 +1,37 @@
 <?php
 require_once 'vendor/autoload.php';
-class WebTest extends PHPUnit_Extensions_Selenium2TestCase
+class WebTest extends PHPUnit_Framework_TestCase
 {
 
+  /**
+   * @var \RemoteWebDriver
+   */
     protected function setUp()
     {
-        $this->setBrowser('firefox');
-        $this->setBrowserUrl('http://laatopi.users.cs.helsinki.fi/tsoha/');
+        $capabilities = array(\WebDriverCapabilityType::BROWSER_NAME => 'firefox');
+        $this->webDriver = RemoteWebDriver::create('http://localhost:4444/wd/hub', $capabilities);
     }
+
+    protected $url = 'http://laatopi.users.cs.helsinki.fi/tsoha/';
 
     public function testTitle()
     {
-        $this->url('http://laatopi.users.cs.helsinki.fi/tsoha/');
-        $this->assertEquals('Gepardi-OhTu', $this->title());
+        $this->webDriver->get($this->url);
+        $this->assertContains('Gepardi-OhTu', $this->webDriver->getTitle());
     }
+
+    public function tearDown()
+    {
+        $this->webDriver->quit();
+    }
+
+    // public function testLoginButton()
+    // {
+    //   $this->webDriver->get($this->url);
+    //   sleep(5);
+    //   $search = $this->webDriver->findElement(WebDriverBy::id('btn btn-primary'));
+    //   $search->click();
+    // }
 
 }
 ?>

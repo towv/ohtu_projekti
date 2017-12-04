@@ -21,24 +21,33 @@ class FeatureContext extends PHPUnit_Extensions_Selenium2TestCase implements Con
      */
     public function __construct()
     {
-        
+
     }
 
     /**
-     * @Given kirjaudu sisaan is pressed
-     */
-    public function kirjauduSisaanIsPressed()
-
+      * @Given /"([^"]+)" is pressed/
+      */
+    public function IsPressed($key)
     {
         $myTest = new WebTest();
         $myTest->setUp();           // Your setup will always be called prior the test.
-        $myTest->prepareSession();  // Specific to Selenium test case, called from `runTest` method.
         $myTest->testTitle();
-       
+        $myTest->tearDown();
     }
 
-    
+    /**
+      * @When /username "([^"]+)" and password "([^"]+)" are entered/
+      */
+      public function usernameAndPassword($username, $password)
+      {
 
+      }
 
+      /**
+        * @Then /system will respond with "([^"]+)"/
+        */
+      public function systemWillRespond($response)
+      {
 
+      }
 }

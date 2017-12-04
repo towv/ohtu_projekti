@@ -92,6 +92,25 @@ class InlineServiceDefinitionsPassTest extends TestCase
         $this->assertNotSame($container->getDefinition('bar'), $arguments[2]);
     }
 
+    public function testProcessInlinesMixedServicesLoop()
+    {
+        $container = new ContainerBuilder();
+        $container
+            ->register('foo')
+            ->addArgument(new Reference('bar'))
+            ->setShared(false)
+        ;
+        $container
+            ->register('bar')
+            ->setPublic(false)
+            ->addMethodCall('setFoo', array(new Reference('foo')))
+        ;
+
+        $this->process($container);
+
+        $this->assertEquals($container->getDefinition('foo')->getArgument(0), $container->getDefinition('bar'));
+    }
+
     public function testProcessInlinesIfMultipleReferencesButAllFromTheSameDefinition()
     {
         $container = new ContainerBuilder();
@@ -250,30 +269,6 @@ class InlineServiceDefinitionsPassTest extends TestCase
         $values = $container->getDefinition('iterator')->getArgument(0)->getValues();
         $this->assertInstanceOf(Reference::class, $values[0]);
         $this->assertSame('inline', (string) $values[0]);
-    }
-
-    public function testGetInlinedServiceIdData()
-    {
-        $container = new ContainerBuilder();
-        $container
-            ->register('inlinable.service')
-            ->setPublic(false)
-        ;
-        $container
-            ->register('non_inlinable.service')
-            ->setPublic(true)
-        ;
-
-        $container
-            ->register('other_service')
-            ->setArguments(array(new Reference('inlinable.service')))
-        ;
-
-        $inlinePass = new InlineServiceDefinitionsPass();
-        $repeatedPass = new RepeatedPass(array(new AnalyzeServiceReferencesPass(), $inlinePass));
-        $repeatedPass->process($container);
-
-        $this->assertEquals(array('inlinable.service' => array('other_service')), $inlinePass->getInlinedServiceIds());
     }
 
     protected function process(ContainerBuilder $container)

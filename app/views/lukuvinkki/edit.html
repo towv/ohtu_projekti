@@ -4,38 +4,39 @@
 <div class="show">
     <form method="post" action="{{base_path}}/lukuvinkki/{{attributes.id}}/edit">
         <div class="form-group">
-            <label>Lukuvinkin otsikko</label>
+            <label>Otsikko</label>
             <input type="text" name="otsikko" class="form-control" value="{{attributes.otsikko}}">
         </div>
+        
+        {% if attributes.sarja %}
+        <div class="form-group">
+            <label>Sarja</label>
+            <input type="text" name="kuvaus" class="form-control" value="{{attributes.sarja}}">
+        </div>
+        {% endif %}
 
         <div class="form-group">
             <label>Tekijä</label>
             <input type="text" name="tekija" class="form-control" value="{{attributes.tekija}}">
         </div>
-
+        
+        {% if attributes.isbn %}
         <div class="form-group">
             <label>ISBN</label>
             <input type="textarea" name="isbn" class="form-control" value="{{attributes.isbn}}">
         </div>
-
+        {% endif %}
+        {% if attributes.url %}
         <div class="form-group">
             <label>URL</label>
             <input type="text" name="url" class="form-control" value="{{attributes.url}}">
         </div>
-
-        <div class="form-group">
-            <label>Tyyppi</label>
-            <select name="tyyppi" class="form-control" value="{{attributes.tyyppi}}">
-                <option>kirja</option>
-                <option>podcast</option>
-                <option>blog post</option>
-                <option>video</option>
-            </select>
-        </div>
+        {% endif %}
 
         <div class="form-group">
             <label>Julkaistu</label>
-            <input type="text" name="julkaistu" class="form-control" value="{{attributes.julkaistu}}">
+            <input type="text" name="julkaistu" class="form-control" value="{{attributes.julkaistu}}" 
+                   placeholder="vvvv tai pp.kk.vvvv">
         </div>
 
         <div class="form-group">
@@ -54,7 +55,7 @@
         
         <div class="form-group">
             <label>Uusi tagi</label>
-            <input type="text" name="tagit" class="form-control">
+            <input type="text" name="tagit" class="form-control" placeholder="Erottele tagit pilkulla">
         </div>
 
         <div class="form-group">

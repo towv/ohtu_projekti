@@ -12,6 +12,7 @@
 namespace Symfony\Component\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Argument\ArgumentInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\ExpressionLanguage;
 use Symfony\Component\DependencyInjection\Reference;
@@ -39,9 +40,9 @@ class AnalyzeServiceReferencesPass extends AbstractRecursivePass implements Repe
     /**
      * @param bool $onlyConstructorArguments Sets this Service Reference pass to ignore method calls
      */
-    public function __construct($onlyConstructorArguments = false)
+    public function __construct(bool $onlyConstructorArguments = false)
     {
-        $this->onlyConstructorArguments = (bool) $onlyConstructorArguments;
+        $this->onlyConstructorArguments = $onlyConstructorArguments;
     }
 
     /**
@@ -94,7 +95,8 @@ class AnalyzeServiceReferencesPass extends AbstractRecursivePass implements Repe
                 $this->getDefinitionId((string) $value),
                 $targetDefinition,
                 $value,
-                $this->lazy || ($targetDefinition && $targetDefinition->isLazy())
+                $this->lazy || ($targetDefinition && $targetDefinition->isLazy()),
+                ContainerInterface::IGNORE_ON_UNINITIALIZED_REFERENCE === $value->getInvalidBehavior()
             );
 
             return $value;
@@ -123,28 +125,21 @@ class AnalyzeServiceReferencesPass extends AbstractRecursivePass implements Repe
         return $value;
     }
 
-    /**
-     * Returns a service definition given the full name or an alias.
-     *
-     * @param string $id A full id or alias for a service definition
-     *
-     * @return Definition|null The definition related to the supplied id
-     */
-    private function getDefinition($id)
+    private function getDefinition(string $id): ?Definition
     {
         $id = $this->getDefinitionId($id);
 
         return null === $id ? null : $this->container->getDefinition($id);
     }
 
-    private function getDefinitionId($id)
+    private function getDefinitionId(string $id): ?string
     {
         while ($this->container->hasAlias($id)) {
             $id = (string) $this->container->getAlias($id);
         }
 
         if (!$this->container->hasDefinition($id)) {
-            return;
+            return null;
         }
 
         return $id;

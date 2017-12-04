@@ -40,5 +40,11 @@
 <p>
     <a href="{{base_path}}/lukuvinkki/{{lukuvinkki.id}}/edit" class="btn btn-primary">Muokkaa</a>
     {{forms.destroy_button("#{base_path}/lukuvinkki/#{lukuvinkki.id}/destroy")}} 
+    {% if user_logged_in %}
+    <br>
+    <form method="post" action="{{base_path}}/lukuvinkki/{{lukuvinkki.id}}/add" style="display: inline-block;">
+        <button type="submit" class="btn btn-default">Lisää vinkkeli</button>
+    </form>
+    {% endif %}
 </p>
 {% endblock %}
