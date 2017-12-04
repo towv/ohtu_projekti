@@ -8,7 +8,7 @@ class WebTest extends PHPUnit_Framework_TestCase
    */
     protected function setUp()
     {
-        $capabilities = array(\WebDriverCapabilityType::BROWSER_NAME => 'firefox');
+        $capabilities = array(\WebDriverCapabilityType::BROWSER_NAME => 'chrome');
         $this->webDriver = RemoteWebDriver::create('http://localhost:4444/wd/hub', $capabilities);
     }
 
@@ -25,13 +25,23 @@ class WebTest extends PHPUnit_Framework_TestCase
         $this->webDriver->quit();
     }
 
-    // public function testLoginButton()
-    // {
-    //   $this->webDriver->get($this->url);
-    //   sleep(5);
-    //   $search = $this->webDriver->findElement(WebDriverBy::id('btn btn-primary'));
-    //   $search->click();
-    // }
+    public function testSignUp()
+    {
+      $this->webDriver->get($this->url);
+      sleep(5);
+      $search = $this->webDriver->findElement(WebDriverBy::id('signup'));
+      $search->click();
+      sleep(5);
+      $search = $this->webDriver->findElement(WebDriverBy::id('tunnus'));
+      $search->click();
+      $this->webDriver->getKeyboard()->sendKeys('php-webdriver');
+      $search = $this->webDriver->findElement(WebDriverBy::id('salasana'));
+      $search->click();
+      $this->webDriver->getKeyboard()->sendKeys('php-webdriver');
+      $search = $this->webDriver->findElement(WebDriverBy::id('submit'));
+      $search->click();
+      sleep(5);
+    }
 
 }
 ?>

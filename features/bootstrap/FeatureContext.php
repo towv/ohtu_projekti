@@ -10,7 +10,7 @@ require_once 'Tests/SelTest.php';
 /**
  * Defines application features from the specific context.
  */
-class FeatureContext extends PHPUnit_Extensions_Selenium2TestCase implements Context
+class FeatureContext extends PHPUnit_Framework_TestCase implements Context
 {
     /**
      * Initializes context.
@@ -31,7 +31,7 @@ class FeatureContext extends PHPUnit_Extensions_Selenium2TestCase implements Con
     {
         $myTest = new WebTest();
         $myTest->setUp();           // Your setup will always be called prior the test.
-        $myTest->testTitle();
+        $myTest->testSignUp();
         $myTest->tearDown();
     }
 

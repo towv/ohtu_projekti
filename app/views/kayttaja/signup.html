@@ -5,15 +5,15 @@
   <form method="post" action="{{base_path}}/signup">
     <div class="form-group">
       <label>Käyttäjätunnus</label>
-      <input type="text" class="form-control" name="tunnus">
+      <input id="tunnus" type="text" class="form-control" name="tunnus">
     </div>
 
     <div class="form-group">
       <label>Salasana</label>
-      <input type="password" class="form-control" name="salasana">
+      <input id="salasana" type="password" class="form-control" name="salasana">
     </div>
 
-    <button type="submit" class="btn btn-primary">Luo Tunnukset</button>
+    <button id="submit" type="submit" class="btn btn-primary">Luo Tunnukset</button>
   </form>
 </div>
 {% endblock %}
