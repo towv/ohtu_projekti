@@ -22,12 +22,12 @@ class HelloWorldController extends BaseController{
     ));
 
     $teos = new Lukuvinkki(array(
-      'otsikko' =>'kirja',
-      'tekija' => 'jeesus',
-      'isbd' => '666',
+      'otsikko' =>'Introduction to the Theory of Computation',
+      'tekija' => 'Michael Sipser',
+      'isbn' => '978-1133187790',
       'tyyppi' => 'kirja',
-      'kuvaus' => 'tosi hyvä kirja',
-      'julkaistu' => "5"
+      'kuvaus' => 'P=NP',
+      'julkaistu' => "2013"
     ));
 
 
